@@ -8,7 +8,7 @@
     list-style: none;
     display: flex;
 }
-
+  
 nav {
     display: flex;
     justify-content: space-between;
@@ -16,7 +16,7 @@ nav {
     font-family: 'Windlass', sans-serif;
     background-color: #FF6200;
     color: white;
-    font-size: 21px;
+    font-size: 20px;
     padding: 15px 20px;
     width: 100%;
 }
@@ -24,6 +24,7 @@ nav {
 .logo {
     width: 60px;
     height: 60px;
+    margin-left: 0
 }
 
 .nav_list > li {
@@ -57,4 +58,17 @@ nav {
 
 .btns button:hover {
     background-color: #185f65;
+}
+
+.main-content{
+    background-image: url("../assets/imgs/background_img.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    opacity: 50%;
+}
+
+.main-content .titulo{
+    margin: 0;
+
 }
