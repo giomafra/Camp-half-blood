@@ -24,7 +24,7 @@ nav {
 .logo {
     width: 60px;
     height: 60px;
-    margin-left: 0
+    margin-left: 0;
 }
 
 .nav_list > li {
@@ -60,15 +60,30 @@ nav {
     background-color: #185f65;
 }
 
-.main-content{
+.main-content {
+    position: relative;
+    height: 100vh;
+}
+
+.main-content .background_img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-image: url("../assets/imgs/background_img.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
-    opacity: 50%;
+    opacity: 40%; 
 }
 
-.main-content .titulo{
+.main-content .titulo {
+    position: relative;
     margin: 0;
-
+    color: black;
+    font-size: 20px; 
+    font-family: 'Windlass', sans-serif;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
