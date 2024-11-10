@@ -62,6 +62,15 @@
             <input id="nome_input" type="text" placeholder="Seu nome" />
           </div>
           <div class="campo">
+            <span>CNPJ:</span>
+            <input id="cnpj_input" type="text" placeholder="Digite o CNPJ" />
+        </div>
+        <div class="campo">
+            <span>Razão Social:</span>
+            <input id="razao_social_input" type="text" placeholder="Digite a razão social" />
+        </div>
+        
+          <div class="campo">
             <span>E-mail:</span>
             <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
           </div>
@@ -111,6 +120,8 @@
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
     var codigoVar = codigo_input.value;
+    var cnpjVar = cnpj_input.value;  // Novo campo
+    var razaoSocialVar = razao_social_input.value;  // Novo campo
     var idEmpresaVincular
 
     // Verificando se há algum campo em branco
@@ -119,7 +130,10 @@
       emailVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
-      codigoVar == ""
+      codigoVar == "" ||
+      cnpjVar == "" ||
+      razaoSocialVar == ""
+      
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
@@ -145,7 +159,7 @@
     }
 
     // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
+    fetch("/empresas/cadastrar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -156,7 +170,9 @@
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
-        idEmpresaVincularServer: idEmpresaVincular
+        idEmpresaVincularServer: idEmpresaVincular,
+        cnpjServer: cnpjVar,  // Novo campo
+        razaoSocialServer: razaoSocialVar  // Novo campo
       }),
     })
       .then(function (resposta) {

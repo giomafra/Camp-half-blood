@@ -87,3 +87,40 @@ nav {
     justify-content: center;
     display: flex;
 }
+
+.main-content .sobre_mim {
+    display: flex;
+    align-items: center;
+    background-color: #185F65;
+    width: 80%;  
+    height: 250px;
+    position: relative;
+    border-top-right-radius: 20px;   
+    border-bottom-right-radius: 20px; 
+}
+
+.main-content .sobre_mim h1 {
+    padding-bottom: 200px;
+    padding-top: 15px;
+    padding-left: 5%;
+    position: relative;
+    color: white;
+    font-size: 40px; 
+    font-family: 'Windlass', sans-serif;
+    text-shadow: 8px 6px 8px rgba(0, 0, 0, 0.7);}
+
+.main-content .sobre_mim .img_sobre_mim {
+    align-items: center;
+    margin-left: 20px;
+    width: 220px;
+    height: 200px;
+}
+.main-content .sobre_mim  .ola {
+    align-items: center;
+    margin-left: 20px;
+    width: 220px;
+    height: 200px;
+}
+    
+    
+
