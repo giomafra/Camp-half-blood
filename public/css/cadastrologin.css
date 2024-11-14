@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --red: rgb(190, 0, 0);
+}
+
+
+.content {
+    display: flex;
+    height: 100vh;
+    background-color: #0e0d0d;
+    color: #fff;
+    font-size: 1.2rem;
+   
+
+}
+
+.login-title {
+    text-shadow: 0 0 1rem rgb(5, 5, 190);
+}
+
+.register-title {
+    text-shadow: 0 0 1rem var(--red);
+}
+
+.wall {
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    gap: 2rem;
+    align-items: center;
+}
+
+.first-wall {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.second-wall {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.inputForm {
+    display: flex;
+    width: 25rem;
+    flex-direction: column;
+
+
+}
+
+.inputForm input {
+    border: 0;
+    border-bottom: 1px solid var(--red);
+    background-color: transparent;
+    height: 2rem;
+    color: #fff;
+    font-size: 1.3rem;
+    padding-left: 2rem;
+}
+
+.first-wall .inputForm input {
+    border-bottom: 1px solid rgb(5, 5, 190);
+}
+
+.inputForm span {
+    margin-left: 1rem;
+    color: rgb(255, 255, 255, 0.4);
+    font-size: 1.2rem;
+}
+
+
+.first-wall .inputForm input:focus {
+    outline: none;
+    background: linear-gradient(to bottom, rgb(5, 5, 190, 0.1), rgb(5, 5, 190, 0.1), rgba(5, 5, 190, 0.4));
+    border-bottom: 2px solid rgb(5, 5, 190);
+}
+
+.second-wall .inputForm input:focus {
+    outline: none;
+    background: linear-gradient(to bottom, rgba(190, 5, 5, 0.1), rgba(190, 5, 5, 0.1), rgba(190, 5, 5, 0.4));
+    border-bottom: 2px solid var(--red);
+}
+
+.dobraForm {
+    display: flex;
+    gap: 0.2rem;
+    justify-content: center;
+}
+
+.btn {
+    width: 14rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    padding: 0 1rem;
+    color: #fff;
+    background-color: rgb(190, 5, 5, 0.1);
+    border-color: var(--red);
+    border-radius: 0.5rem;
+}
+
+.first-wall .btn {
+    border-color: rgb(5, 5, 190);
+    background-color: rgb(5, 5, 190, 0.1);
+}
+
+.overlay {
+    position: absolute;
+    transform: translate(100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50%;
+    height: 100%;
+    background-color: blue;
+    transition: 1s ease-in-out;
+    background-image: url(../assets/kataraArt.jpg);
+    z-index: 2;
+ 
+}
+
+.msg-erro{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: fit-content;
+    width: 20vw;
+    z-index: 2;
+    background-color: #fff;
+    animation: borderColor 0.5s infinite;
+    color: #0e0d0d;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    border: 5px rgb(255, 255, 255) solid;
+    z-index: 3;
+    
+}
+
+.error{
+    font-family: sans-serif;
+    font-size: 3rem;
+    color: #ffffff;
+    text-shadow:
+    -2px -2px 0 rgb(150, 0, 0),
+    2px -2px 0 rgb(150, 0, 0),
+    -2px 2px 0 rgb(150, 0, 0),
+    2px 2px 0 rgb(150, 0, 0);
+}
+
+#msgErro{
+    font-family: sans-serif;
+    font-size: 2rem;
+    color: #fff;
+    text-shadow:
+    -2px -2px 0 #000000,
+    2px -2px 0 #000000,
+    -2px 2px 0 #000000,
+    2px 2px 0 #000000;
+    
+}
+
+
+@keyframes borderColor {
+    0% {
+        border: 5px rgb(255, 255, 255) solid;
+    }
+
+    50% {
+        border: 5px rgb(185, 0, 0) ridge;
+    }
+
+}
+
+
+input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    outline: none;
+    background-color: #0e0d0d;
+    cursor: pointer;
+}
+
+.radioFire:checked {
+    background-color: red !important;
+}
+
+.radioWater:checked {
+    background-color: blue !important;
+}
+
+.radioEarth:checked {
+    background-color: green !important;
+}
+
+.radioAir:checked {
+    background-color: grey !important;
+}
+
+.blue {
+    color: blue;
+}
+
+.red {
+    color: var(--red)
+}
+
+.signIn:hover{
+   
+    border-color:  rgb(5, 5, 190, 0.1);
+    background-color: rgb(5, 5, 190);
+}
+
+.signUp:hover{
+    background-color:  var(--red);
+    border-color: rgb(190, 5, 5, 0.1);
+}
+
+.logout{
+    position: absolute;
+    background-image: url(../assets/logout.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 5vh;
+    width: 5vh;
+    z-index: 1;
+    transition: 0.5s ease;
+}
+.logoutone{
+    top: 1rem;
+    left: 1rem;
+}
+
+.logoutTwo{
+    top: 1rem;
+    right: 1rem;
+}
+
+.logout:hover{
+    background-color: red;
+    transform: scale(0.9);
+    border-radius: 50%;
+}

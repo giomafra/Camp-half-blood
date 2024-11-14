@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="css/cadastrologin.css">
+  <link rel="shortcut icon" href="assets/miniAang.webp">
+  <title>Register</title>
+</head>
+
+<body>
+  <div class="content">
+    <div id="msg_erro" class="msg-erro">
+      <span id="erromsg" class="error">ERRO</span>
+      <span id="msgErro">Senha Errada</span>
+    </div>
+    <div class="overlay" id="overlay">span</div>
+    <div class="wall first-wall">
+      <span onclick="home()" class="logoutone logout"></span>
+      <h1 class="login-title">Login</h1>
+      <div class="inputForm">
+        <span>Email</span>
+        <input type="email" id="input_email_log">
+      </div>
+
+      <div class="inputForm">
+        <span>Senha</span>
+        <input type="password" id="input_password_log">
+      </div>
+      <button class="btn signIn" onclick="entrarLogin()">Acessar</button>
+      <span>Você não tem uma conta? <span class="blue" onclick="mudar()">Cadastrar</span></span>
+
+    </div>
+    <div class="wall second-wall">
+      <span onclick="home()" class="logoutTwo logout"></span>
+
+      <h1 class="register-title">Cadastro</h1>
+      <div class="inputForm">
+        <span>Nome</span>
+        <input type="text" id="input_name">
+      </div>
+
+
+      <div class="inputForm">
+        <span>Email</span>
+        <input type="email" id="input_email">
+      </div>
+
+      <div class="inputForm">
+        <span>Senha</span>
+        <input type="password" id="input_password">
+      </div>
+
+      <div class="inputForm">
+        <span>Confirmação de Senha</span>
+        <input type="password" id="input_confirm">
+      </div>
+
+
+      <span>Qual sua Dobra Favorita?</span>
+      <label id="dobraForm" class="dobraForm">
+        <input class="radioFire" type="radio" id="fogo" name="dobra" value="fogo">
+        <label for="fogo">Fogo</label><br>
+        <input class="radioWater" type="radio" id="agua" name="dobra" value="agua">
+        <label for="agua">Água</label><br>
+        <input class="radioEarth" type="radio" id="terra" name="dobra" value="terra">
+        <label for="terra">Terra</label><br>
+        <input class="radioAir" type="radio" id="ar" name="dobra" value="ar">
+        <label for="ar">Ar</label><br><br>
+      </label>
+      <button class="btn signUp" onclick="cadastrar()">Cadastrar</button>
+      <span>Você já tem uma conta? <span class="red" onclick="mudar2()">Fazer login</span></span>
+    </div>
+
+
+
+
+  </div>
+</body>
+
+</html>
+<script src="js/cadastrologin.js"></script>
+  

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/cadastro.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+                <div class="image-section">
+                </div>
+        </div>
+
+        <div class="right-section">
+            <div class="formulario">
+                <h2 class="titulo_principal">Cadastre-se aqui</h2>
+                <div class="form_cointainer_empresa" id="div_form1">
+                    <h3 class="titulo_form">Insira os seus dados:</h3>
+                    <div class="form-group">
+                        <i class="fas fa-user-tie"></i>
+                        <input class="main-input" id="input_nome" placeholder="Nome" type="text" oninput="validarResponsavel()" />
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-envelope"></i>
+                        <input class="main-input" id="input_email" placeholder="E-mail" type="text" oninput="validarEmail()" />
+                    </div>
+                    <div class="form-group">    
+                        <i class="fas fa-lock"></i>
+                        <input class="main-input" id="input_senha" placeholder="Senha" type="password" oninput="validarSenha()" />
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-lock"></i>
+                        <select class="main-input" id="input_personagem">
+                            <option value=""></option>
+                            <option value=""></option>
+                            <option value=""></option>
+                            <option value=""></option>
+                            <option value=""></option>
+    
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button onclick="cadastrar()">Cadastrar</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
