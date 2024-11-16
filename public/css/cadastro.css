@@ -159,8 +159,8 @@ select option {
     width: 60%;
     margin: 0 auto;
     display: flex;
-    flex-direction: column;  /* Alinha os itens na vertical */
-    align-items: center;     /* Centraliza os itens horizontalmente */
-    justify-content: center; /* Centraliza os itens verticalmente */
-    height: 85%;            /* Permite que a altura da div seja ajustada */
+    flex-direction: column;  
+    align-items: center;     
+    justify-content: center; 
+    height: 85%;           
 }

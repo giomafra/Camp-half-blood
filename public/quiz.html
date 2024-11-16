@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/quiz.css">
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/imgs/icone home.png">
+                </a>
+            </div>
+            <div class="links">
+                <ul class="nav_list">
+                    <li><a href=# class="logo">Minha história</a></li>
+                    <li><a href=#>Saga</a></li>
+                    <li><a href=#>Livros</a></li>
+                    <li><a href="#">Personagens</a></li>
+                    <li><a href=#>Educacão de qualidade</a></li>
+                    <li><a href=#>Jogo</a></li>
+                    <li><a href=#>Quizzes</a></li>
+                </ul>
+            </div>
+            <div class="btns">
+                <button onclick="window.location.href='cadastro.html'">Cadastro</button>
+                <button class="login" onclick="window.location.href='login.html'">Login</button>
+            </div>        
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <div class="main-quiz">
+            <div class="pergunta"></div>
+            <div class="respostas">
+                <div class="resposta_style">
+                <div class="resposta"></div>
+                <div class="resposta"></div>
+            </div>
+            <div class="resposta_style">
+                <div class="resposta"></div>
+                <div class="resposta"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+
+    var lista_perguntas = [
+        {
+         titulo:"Se um colega de trabalho está passando por um momento difícil, o que você faz?",
+         opcoes: [
+            {
+                descricao:"Organizo uma confraternização para animá-lo",
+                personagem:"Michael"
+            },
+            {
+                descricao:"Escuto e ofereço conselhos.",
+                personagem:"Pam"
+            },
+            {descricao:"Dou espaço para que ele possa refletir.",
+                personagem:"Stanley"
+            },
+                {descricao:"Chamo ele para almoçar fora e conversar.",
+                personagem:"Jim"
+            }],
+        }, 
+        {
+         titulo:"Qual é a sua ideia de um bom momento com amigos no escritório?",
+         opcoes: [
+            {
+                descricao:"Organizar um jogo de perguntas e respostas.",
+                personagem:"Dwight"
+            },
+            {
+                descricao:"Participar de uma atividade criativa em grupo.",
+                personagem:"Pam"
+            },
+            {descricao:"Assistir a um filme ou série juntos.",
+                personagem:"Toby"
+            },
+            {
+                descricao:"Sair para uma noite de jogos ou boliche.",
+                personagem:"Jim"
+            }],
+        },
+        {
+         titulo:"Como você lida com conflitos entre amigos no trabalho?",
+         opcoes: [
+            {
+                descricao:"Tento fazer uma mediação e resolver o problema.",
+                personagem:"Michael"
+            },
+            {
+                descricao:"Escuto ambos os lados e tento entender os sentimentos.",
+                personagem:"Pam"
+            },
+            { 
+                descricao:"Evito o conflito e deixo que se resolvam sozinhos.",
+                personagem:"Stanley"
+            },
+            {
+                descricao:"Enfrento o problema diretamente e sugiro uma solução mais prática.",
+                personagem:"Dwight"}
+            ],
+        },
+        {
+        titulo:"Se você e seu amigo têm uma tarefa difícil para concluir, como você aborda a situação?",
+        opcoes: [
+            {
+                descricao:"Divido a tarefa e faço uma competição amigável.",
+                personagem:"Dwight"
+            },
+            { 
+                descricao:"Colaboro e trabalho junto para garantir que tudo saia perfeito.",
+                personagem:"Pam"
+            },
+            {
+                descricao:" Faço minha parte e confio que ele fará a dele.",
+                personagem:"Stanley"
+            },
+            {
+                descricao:"Procuro maneiras de tornar a tarefa mais divertida.",
+                personagem:"Jim"
+            }], 
+        },
+        {
+        titulo:"Se você e um amigo discutem, como você lida com isso?",
+        opcoes: [ 
+            {
+                descricao:"Tento resolver o problema imediatamente.",
+                personagem: "Michael"
+            },
+            {
+                descricao:"Dou um tempo para esfriar a cabeça antes de conversar.",
+                personagem: "Pam"
+            },
+            { 
+                descricao:"Tento esquecer e seguir em frente sem tocar no assunto.",
+                personagem: "Jim"
+            },
+                {descricao:"Peço desculpas mesmo se eu não estiver errado.",
+                personagem: "Toby"
+            }],  
+        },
+        {
+        titulo:"O que você acha mais importante em uma amizade?",
+        opcoes: [
+            {
+                descricao: "Honestidade.",
+                personagem: "Jim"
+            },
+            { 
+                descricao: "Diversão.",
+                personagem: "Michael"
+            },
+            { 
+                descricao: "Lealdade.",
+                personagem: "Dwight"
+            },
+            {
+                descricao: "Apoio mútuo.",
+                personagem: "Pam"}
+            ],  
+        }
+    ]
+
+    var indiceQuestaoAtual = 0;
+    var pontuacao = 0;
+    var personagem = "";
+    var michael = 0;
+    var pam = 0;
+    var jim = 0;
+    var dwight = 0;
+    var stanley = 0;
+    var toby = 0;
+    var creed = 0;
+    
+    function iniciarQuiz() {
+            document.getElementById('botao-iniciar-quiz').style.display = 'none';
+            mostrarPergunta();
+        }
+    
+    function mostrarPergunta() {
+            if (indiceQuestaoAtual < lista_perguntas.length) {
+                var pergunta = lista_perguntas[indiceQuestaoAtual];
+                var opcoes = "";
+                for (var i = 0; i < pergunta.opcoes.length; i++) {
+                    opcoes += `<button onclick="responder('${pergunta.opcoes[i].personagem}')">${pergunta.opcoes[i].descricao}</button>`
+                }
+                document.getElementById('quiz-content').innerHTML = `
+                    <h3>${pergunta.titulo}</h3>
+                    <div>
+                        ${opcoes}
+                    </div>
+                `;
+            } else {
+                mostrarResultado();
+                }
+                }
+                
+        function responder(opcaoEscolhida) {
+        console.log(opcaoEscolhida);
+            var pergunta = lista_perguntas[indiceQuestaoAtual];
+            if (opcaoEscolhida == "Michael") {
+                michael++;
+            } else if(opcaoEscolhida == "Pam"){
+                pam++;
+            } else if(opcaoEscolhida == "Jim"){
+                jim++;
+            } else if(opcaoEscolhida == "Dwight"){
+                dwight++;
+            } else if(opcaoEscolhida == "Stanley"){
+                stanley++;
+            } else if (opcaoEscolhida == "Toby"){
+                toby++;
+            } 
+            indiceQuestaoAtual++;
+            mostrarPergunta();
+        }
+
+        function mostrarResultado() {
+            var personagemPersonalidade = -1;
+            var nomePersonagem = "";
+            if (michael > pam && michael > jim && michael > dwight && michael > stanley  && michael > toby){
+                personagemPersonalidade = 1;
+                nomePersonagem = "Michael";
+            } else if(dwight > pam && dwight > jim && dwight > michael && dwight > stanley  && dwight > toby){
+                personagemPersonalidade = 2;
+                nomePersonagem = "Dwight";
+            } else if(jim > pam && jim > dwight && jim > michael && jim > stanley  && jim > toby){
+                personagemPersonalidade = 3;
+                nomePersonagem = "Jim";
+            } else if(pam > michael && pam > jim && pam > stanley && pam > dwight && pam > toby){
+                personagemPersonalidade = 4;
+                nomePersonagem = "Pam";
+            } else if(stanley > pam && stanley > jim && stanley > michael && stanley > dwight  && stanley > toby){
+                personagemPersonalidade = 7;
+                nomePersonagem = "Stanley";
+            } else if(toby > pam && toby > jim && toby > michael && toby > stanley  && toby > dwight){
+                personagemPersonalidade = 13;
+                nomePersonagem = "Toby"
+            } else{
+                personagemPersonalidade = 15;
+                nomePersonagem = "Creed"
+            }
+            
+            fetch(`/resultado/2/${sessionStorage.ID_USUARIO}/${personagemPersonalidade}`, { method: "POST", cache: 'no-store' }).then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Resultado inserido com sucesso!`);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na inserção do resultado: ${error}`);
+            });
+
+            var resultado = `
+                <h3>Parabéns! Você se parace mais com ${nomePersonagem}!</h3>
+                <button onclick="reiniciarQuiz()">Reiniciar Quiz</button>
+                <a href="dashboard.html"><button onclick="voltarDashboard()">Voltar para a Dashboard</button></a>
+            `;
+            document.getElementById('quiz-content').innerHTML = resultado;
+        }
+
+        function reiniciarQuiz() {
+            indiceQuestaoAtual = 0;
+            pontuacao = 0;
+            iniciarQuiz();
+        }
+</script>

@@ -9,7 +9,7 @@ body, html {
 .container {
     display: flex;
     height: 100%;
-    background-color: #00bfb2;
+    background-color: #b84e00;
     flex-direction: row-reverse;
 
 }
@@ -87,7 +87,7 @@ body, html {
     background-color: transparent;
     border: none;
     height: 50px;
-    border-bottom: 2px solid #018394;
+    border-bottom: 2px solid #b84e00;
     width: 100%; 
 }
 
@@ -110,7 +110,7 @@ input::placeholder {
 .formulario select {
     background-color: transparent;
     color: #ffffff;
-    border: 1px solid #018394;
+    border: 1px solid #b84e00;
     padding: 5px;
     font-size: 16px;
     outline: none;
@@ -130,7 +130,7 @@ select option {
 }
 
 .entrar {
-    background-color: #185f65;
+    background-color: #b84e00;
     color: white;
     font-family: 'Windlass', sans-serif;
     font-size: 16px;
@@ -147,24 +147,24 @@ select option {
 }
 
 .cadastrar:hover {
-    background-color: #d65f00;
+    background-color: #018394;
     transform: scale(1.05);
 }
 
 .cadastrar:active {
-    background-color: #b84e00;
+    background-color: #018394;
     transform: scale(0.95);
 }
 
 .formulario_todo {
-    border: 3px solid #018394;
+    border: 3px solid #b84e00;
     padding: 20px;
     border-radius: 10px;
     width: 60%;
     margin: 0 auto;
     display: flex;
-    flex-direction: column;  /* Alinha os itens na vertical */
-    align-items: center;     /* Centraliza os itens horizontalmente */
-    justify-content: center; /* Centraliza os itens verticalmente */
-    height: 85%;            /* Permite que a altura da div seja ajustada */
+    flex-direction: column;  
+    align-items: center;    
+    justify-content: center; 
+    height: 85%;           
 }
