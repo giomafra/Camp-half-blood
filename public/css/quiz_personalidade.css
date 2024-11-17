@@ -153,11 +153,12 @@ nav {
     border: solid 3px black;
     display: flex; /* Certifica que o Flexbox será aplicado */
     flex-direction: column; /* Garante que os itens fiquem empilhados verticalmente */
-    justify-content: center; /* Alinha os itens verticalmente ao centro */
+    justify-content: space-around; /* Alinha os itens verticalmente ao centro */
     align-items: center; /* Alinha os itens horizontalmente ao centro */
     gap: 20px; /* Espaçamento entre os elementos */
     font-family: 'Windlass', sans-serif;
     position: relative; /* Adicionado para garantir que a div não seja sobreposta */
+    font-size: 30px
 }
 
 .botao_reinicio{
@@ -185,4 +186,20 @@ nav {
 }
 .botao_reinicio:focus {
     outline: none;
+}
+#textoPersonagem{
+    padding: 20px;
+    border-radius: 10px;
+    border: solid 4px black;
+    background-color: #cf7317;
+    font-size: 25px;
+}
+#resultado-texto{
+    padding: 20px;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    border: solid 4px black;
+    background-color: #cf7317;
+    font-size: 30px;
 }

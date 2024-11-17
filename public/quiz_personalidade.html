@@ -7,14 +7,13 @@
     <link rel="stylesheet" href="css/quiz_personalidade.css">
     <link href="https://fonts.cdnfonts.com/css/ritalin" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/windlass" rel="stylesheet">
-
 </head>
 <body>
     <header>
         <nav class="nav">
             <div class="logo">
                 <a href="index.html">
-                    <img src="assets/imgs/icone home.png">
+                    <img src="assets/imgs/icone home.png" alt="Ícone Home">
                 </a>
             </div>
         </nav>
@@ -34,15 +33,15 @@
                     <div class="resposta" id="resposta6"></div>
                 </div>
             </div>
-        </div>
+        </div> 
         <div class="capa_quiz" id="capa">
-            <h1 style="text-shadow:1px 1px 1px white;">No universo de Percy Jackson, quem seria seu pai ou mãe ?</h1>
+            <h1 style="text-shadow:1px 1px 1px white;">No universo de Percy Jackson, quem seria seu pai ou mãe?</h1>
             <button id="botao-iniciar-quiz" class="botao_inicio">Iniciar Quiz</button>
         </div>
-        
         <div class="resultado" id="resultado" style="display:none;">
             <h2>Resultado:</h2>
             <p id="resultado-texto"></p>
+            <p id="textoPersonagem"></p>
             <button id="botao_reiniciar" class="botao_reinicio" style="display: none;">Reiniciar Quiz</button>
         </div>
     </div>
@@ -116,7 +115,6 @@
                 ],
             }
         ];
-    
 
         var indiceQuestaoAtual = 0;
         var pontos = {
@@ -127,11 +125,8 @@
             Dionísio: 0,
             Apolo: 0
         };
-        
-        var botao_iniciar_quiz = document.getElementById("botao-iniciar-quiz");
-        var titulo_inicio = document.getElementById("titulo_inicio");
+
         var capa = document.getElementById("capa");
-        var botao_reiniciar = document.getElementById("botao_reiniciar");
         var main_quiz = document.getElementById("main-quiz");
         var perguntaTitulo = document.getElementById("pergunta-titulo");
         var resposta1 = document.getElementById("resposta1");
@@ -142,6 +137,9 @@
         var resposta6 = document.getElementById("resposta6");
         var resultado = document.getElementById("resultado");
         var resultadoTexto = document.getElementById("resultado-texto");
+        var textoPersonagem = document.getElementById("textoPersonagem");
+        var botao_iniciar_quiz = document.getElementById("botao-iniciar-quiz");
+        var botao_reiniciar = document.getElementById("botao_reiniciar");
 
         function mostrarPergunta() {
             if (indiceQuestaoAtual < lista_perguntas.length) {
@@ -157,12 +155,8 @@
             }
         }
 
-        function processarResposta(opcaoSelecionada) {
-            var personagemEscolhido = opcaoSelecionada.personagem;
-            var chaleEscolhido = opcaoSelecionada.chale;
-
-            pontos[personagemEscolhido] += 1;
-
+        function processarResposta(opcao) {
+            pontos[opcao.personagem]++;
             if (indiceQuestaoAtual === lista_perguntas.length - 1) {
                 exibirResultado();
             } else {
@@ -174,74 +168,60 @@
         function exibirResultado() {
             var personagemMaisPontuado = '';
             var maiorPontuacao = 0;
-            var chaleMaisPontuado = ''; 
+            var chaleMaisPontuado = '';
 
-            // Itera para encontrar o personagem mais pontuado
             for (var personagem in pontos) {
                 if (pontos[personagem] > maiorPontuacao) {
                     maiorPontuacao = pontos[personagem];
                     personagemMaisPontuado = personagem;
-                    chaleMaisPontuado = lista_perguntas[0].opcoes[0].chale; // Troque conforme necessário
                 }
             }
 
-            resultadoTexto.innerText = 'Você é como ' + personagemMaisPontuado + ' e o seu chale é ' + chaleMaisPontuado;
+            for (var i = 0; i < lista_perguntas.length; i++) {
+                var opcoes = lista_perguntas[i].opcoes;
+                for (var j = 0; j < opcoes.length; j++) {
+                    if (opcoes[j].personagem === personagemMaisPontuado) {
+                        chaleMaisPontuado = opcoes[j].chale;
+                    }
+                }
+            }
+
+            var textoPersonagemFinal = {
+                Atena: "Você é muito sábio e estratégico, assim como a deusa Atena.",
+                Poseidon: "Você ama estar perto do mar e da água. Seu espírito é aventureiro e conectado com a natureza.",
+                Afrodite: "Você é muito vaidoso e amoroso, assim como a deus Afrodite,",
+                Hermes: "Assim como Hermes, você adora adimirar os caminhos e tem muita engenhosidade e curiosidade.",
+                Dionísio: "Você é a alma da festa e adora sair com os amigos, assim como Dionísio",
+                Apolo: "Sua luz, harmonia e paixão pelas artes são iguais ao do deus Apolo"
+            };
+
+            textoPersonagem.innerText = textoPersonagemFinal[personagemMaisPontuado];
+            resultadoTexto.innerHTML = `Bem-vindo, filho de <strong>${personagemMaisPontuado}</strong>. Pode ir para o seu chalé nº ${chaleMaisPontuado}`;
             resultado.style.display = 'flex';
             main_quiz.style.display = 'none';
-            botao_reiniciar.style.display = 'block';  // Exibe o botão de reiniciar
+            botao_reiniciar.style.display = 'block';
         }
 
         botao_iniciar_quiz.onclick = function() {
-            
-            // botao_iniciar_quiz.style.display = 'none';
-            capa.style.display = 'none'; // Esconde a capa do quiz
-            main_quiz.style.display = 'flex';  // Mostra o quiz
+            capa.style.display = 'none';
+            main_quiz.style.display = 'flex';
             mostrarPergunta();
         };
 
         botao_reiniciar.onclick = function() {
-            // Reinicia as variáveis
             indiceQuestaoAtual = 0;
-            pontos = {
-                Atena: 0,
-                Poseidon: 0,
-                Afrodite: 0,
-                Hermes: 0,
-                Dionísio: 0,
-                Apolo: 0
-            };
-
-            // Esconde o resultado e mostra o quiz novamente
+            for (var personagem in pontos) pontos[personagem] = 0;
             resultado.style.display = 'none';
             main_quiz.style.display = 'flex';
             botao_reiniciar.style.display = 'none';
-
             mostrarPergunta();
         };
 
-        resposta1.onclick = function() {
-            processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[0]);
-        };
-
-        resposta2.onclick = function() {
-            processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[1]);
-        };
-
-        resposta3.onclick = function() {
-            processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[2]);
-        };
-
-        resposta4.onclick = function() {
-            processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[3]);
-        };
-
-        resposta5.onclick = function() {
-            processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[4]);
-        };
-
-        resposta6.onclick = function() {
-            processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[5]);
-        };
+        resposta1.onclick = () => processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[0]);
+        resposta2.onclick = () => processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[1]);
+        resposta3.onclick = () => processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[2]);
+        resposta4.onclick = () => processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[3]);
+        resposta5.onclick = () => processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[4]);
+        resposta6.onclick = () => processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[5]);
     </script>
-</body>
-</html>
+</body
