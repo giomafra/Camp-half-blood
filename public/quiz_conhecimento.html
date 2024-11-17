@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz de conhecimento</title>
+    <link rel="stylesheet" href="css/quiz_conhecimentos.css">
+    <link href="https://fonts.cdnfonts.com/css/ritalin" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/windlass" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/imgs/icone home.png" alt="Logo">
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div class="main-content">
+        <!-- Div principal com o quiz -->
+        <div class="main-quiz" id="main-quiz" style="display: none;">
+            <div class="pergunta" id="pergunta-titulo"></div>
+            <div class="respostas">
+                <div class="resposta_style">
+                    <div class="resposta" id="resposta1" onclick="selecionarResposta(1)">A</div>
+                    <div class="resposta" id="resposta2" onclick="selecionarResposta(2)">B</div>
+                </div>
+                <div class="resposta_style">
+                    <div class="resposta" id="resposta3" onclick="selecionarResposta(3)">C</div>
+                    <div class="resposta" id="resposta4" onclick="selecionarResposta(4)">D</div>
+                </div>
+            </div>
+            <button id="btnProx" class="btn_proxima" onclick="proximaQuestao()" style="display: none;">Próxima</button>
+            <button id="btnConcluir" onclick="mostrarResultado()" style="display: none;">Concluir</button>
+        </div>
+        <div class="capa_quiz" id="capa">
+            <h1 style="text-shadow:1px 1px 1px white;">Será que você conhece bem o universo de Percy Jackson?</h1>
+            <button id="botao-iniciar-quiz" class="botao_inicio" onclick="iniciarQuiz()">Iniciar Quiz</button>
+        </div>
+
+        <!-- Div de introdução do quiz -->
+
+
+        <!-- Div com o resultado final -->
+        <div class="resultado" id="resultado" style="display:none;">
+            <h2>Resultado:</h2>
+            <p id="resultado-texto"></p>
+            <button id="botao_reiniciar" class="botao_reinicio" onclick="reiniciarQuiz()">Reiniciar Quiz</button>
+        </div>
+    </div>
+
+    <script>
+    const listaDeQuestoes = [
+        {
+            pergunta: 'Qual o nome do pégasus que é amigo do Percy e ajudou ele em "O Último Olimpiano"?',
+            alternativaA: "White-Jack",
+            alternativaB: "Black-jack",
+            alternativaC: "Penny",
+            alternativaD: "Jackey",
+            alternativaCorreta: 2
+        },
+        {
+            pergunta: "Qual foi o primeiro monstro que o Percy enfrentou mesmo antes de saber que era um semi-deus?",
+            alternativaA: "O minotauro",
+            alternativaB: "O gigante Atlas",
+            alternativaC: "Uma fúria, a Sra. Dodds",
+            alternativaD: "A medusa",
+            alternativaCorreta: 3
+        },
+        {
+            pergunta: 'Quem é o "...deus que se tornou desleal" da profecia dita pelo oráculo no primeiro livro?',
+            alternativaA: "Luke Castellan, induzido por Cronos",
+            alternativaB: "Ares",
+            alternativaC: "Hades",
+            alternativaD: "Dionísio",
+            alternativaCorreta: 1
+        },
+        {
+            pergunta: 'No livro "A Batalha do Labirinto", Percy conhece dois irmãos filhos de um dos três grandes. Quem são eles?',
+            alternativaA: "Bianca e Nico di Angelo",
+            alternativaB: "Irmãos Stoll",
+            alternativaC: "Jason e Piper Winchester",
+            alternativaD: "Annabeth e Grover Camel",
+            alternativaCorreta: 1
+        },
+        {
+            pergunta: 'Por que Annabeth repensou a ideia de entrar para as Caçadoras de Ártemis junto com Thalia?',
+            alternativaA: "Porque ela perderia sua independência",
+            alternativaB: "Ela percebeu que poderia seguir o seu próprio caminho sem abrir mão de uma futura família",
+            alternativaC: "Ela não queria ser subordinada a outro deus",
+            alternativaD: "Nenhuma das alternativas acima",
+            alternativaCorreta: 2
+        },
+        {
+            pergunta: 'Como chama o conselho que concede aos sátiros a licença de buscador?',
+            alternativaA: "Conselho dos deuses do Olimpo",
+            alternativaB: "Conselho dos Sátiros de Pan",
+            alternativaC: "Conselho dos Anciões de Pan",
+            alternativaD: "Conselho dos Anciãos de Casco Fendido",
+            alternativaCorreta: 4
+        },
+        {
+            pergunta: 'Por quanto tempo eles ficam no Cassino de Lótus?',
+            alternativaA: "Uma semana",
+            alternativaB: "Um mês",
+            alternativaC: "5 dias",
+            alternativaD: "2 horas",
+            alternativaCorreta: 3
+        },
+        {
+            pergunta: 'Como Percy ganhou a luta contra Ares, o deus da guerra?',
+            alternativaA: "Acertando-o no calcanhar",
+            alternativaB: "Com a espada enfiada no coração",
+            alternativaC: "Um tsunami invocado pelo mar",
+            alternativaD: "Com a ajuda do seu irmão Tyson",
+            alternativaCorreta: 1
+        },
+        {
+            pergunta: 'Como o trio se livrou do Cérbero, o enorme cão de três cabeças?',
+            alternativaA: "Percy conseguiu matá-lo com a Anaklusmos",
+            alternativaB: "Annabeth jogou uma bolinha vermelha pra ele buscar",
+            alternativaC: "Grover acalmou ele com a sua flauta",
+            alternativaD: "Hades chegou antes dele atacar",
+            alternativaCorreta: 2
+        },
+        {
+            pergunta: 'Qual o meio de comunicação que os olimpianos usam para não serem rastreados?',
+            alternativaA: "Torpedos pelo mar",
+            alternativaB: "Mensagens enviadas pelo Hermes",
+            alternativaC: "Telefone mágico",
+            alternativaD: "As mensagens de Íris",
+            alternativaCorreta: 4
+        }
+    ];
+
+    let numeroDaQuestaoAtual = 0;
+    let pontuacaoFinal = 0;
+    let quantidadeDeQuestoes = listaDeQuestoes.length;
+    let respostasSelecionadas = [];
+
+    function onloadEsconder() {
+        document.getElementById('capa').style.display = "flex";
+        document.getElementById('main-quiz').style.display = "none";
+        document.getElementById('resultado').style.display = "none";
+    }
+
+    function iniciarQuiz() {
+        // Esconde a capa
+        document.getElementById('capa').style.display = "none"; 
+
+        // Mostra o quiz
+        document.getElementById('main-quiz').style.display = "flex"; 
+
+        // Preenche a pergunta e as alternativas
+        preencherHTMLcomQuestaoAtual(); 
+
+        // Exibe o botão "Próxima"
+        document.getElementById('btnProx').style.display = "inline-block"; 
+
+        // Esconde o botão "Concluir" até a última pergunta
+        document.getElementById('btnConcluir').style.display = "none"; 
+    }
+    
+
+    function preencherHTMLcomQuestaoAtual() {
+        const questao = listaDeQuestoes[numeroDaQuestaoAtual];
+        document.getElementById('pergunta-titulo').innerHTML = questao.pergunta;
+        document.getElementById('resposta1').innerHTML = questao.alternativaA;
+        document.getElementById('resposta2').innerHTML = questao.alternativaB;
+        document.getElementById('resposta3').innerHTML = questao.alternativaC;
+        document.getElementById('resposta4').innerHTML = questao.alternativaD;
+    }
+
+    function selecionarResposta(id) {
+       
+        const respostas = document.querySelectorAll('.resposta');
+        respostas.forEach(resposta => {
+            resposta.style.backgroundColor = '';
+        });
+
+        // Marcar a resposta selecionada
+        document.getElementById('resposta' + id).style.backgroundColor = 'lightgreen';
+
+        // Guardar a resposta selecionada
+        respostasSelecionadas[numeroDaQuestaoAtual] = id;
+
+        
+
+        // Exibir o botão "Próxima"
+        document.getElementById('btnProx').style.display = "inline-block";
+    }
+
+    function proximaQuestao() {
+        const questao = listaDeQuestoes[numeroDaQuestaoAtual];
+        const respostaSelecionada = respostasSelecionadas[numeroDaQuestaoAtual];
+
+        // Verifica se o usuário selecionou uma resposta
+        if (!respostaSelecionada) {
+            alert("Por favor, selecione uma resposta.");
+            return; // Não faz nada se nenhuma resposta foi selecionada
+        }
+
+        // Verifica se a resposta está correta
+        if (respostaSelecionada === questao.alternativaCorreta) {
+            pontuacaoFinal++;
+        }
+
+        // Avança para a próxima questão
+        numeroDaQuestaoAtual++;
+
+        // Verifica se há mais questões
+        if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
+            preencherHTMLcomQuestaoAtual();
+        } else {
+            mostrarResultado();
+        }
+
+        // Esconde o botão "Próxima"
+        document.getElementById('btnProx').style.display = "none";
+    }
+
+    function mostrarResultado() {
+        document.getElementById('main-quiz').style.display = "none";
+        document.getElementById('resultado').style.display = "flex";
+        document.getElementById('resultado-texto').innerHTML = "SUA PONTUAÇÃO É " + pontuacaoFinal + " de " + quantidadeDeQuestoes;
+        document.getElementById('btnConcluir').style.display = "none";
+    }
+
+    function reiniciarQuiz() {
+        numeroDaQuestaoAtual = 0;
+        pontuacaoFinal = 0;
+        respostasSelecionadas = [];
+        document.getElementById('resultado').style.display = "none";
+        document.getElementById('capa').style.display = "flex";
+    }
+
+    window.onload = onloadEsconder;
+    </script>
+</body>
+</html>
