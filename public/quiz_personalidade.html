@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Personalidade</title>
     <link rel="stylesheet" href="css/quiz.css">
+    <link href="https://fonts.cdnfonts.com/css/ritalin" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/windlass" rel="stylesheet">
+
 </head>
 <body>
     <header>
-        <h1>Quiz de Personalidade</h1>
+        <nav class="nav">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/imgs/icone home.png">
+                </a>
+            </div>
+        </nav>
     </header>
     <div class="main-content">
-        <div class="main-quiz" id="main-quiz" style="display:none;">
+        <div class="main-quiz" id="main-quiz" style="display: none;">
             <div class="pergunta" id="pergunta-titulo"></div>
             <div class="respostas">
                 <div class="resposta_style"> 
@@ -26,11 +35,15 @@
                 </div>
             </div>
         </div>
-        <button id="botao-iniciar-quiz">Iniciar Quiz</button>
+        <div class="capa_quiz" id="capa">
+            <h1 style="text-shadow:1px 1px 1px white;">No universo de Percy Jackson, quem seria seu pai ou mãe ?</h1>
+            <button id="botao-iniciar-quiz" class="botao_inicio">Iniciar Quiz</button>
+        </div>
         
-        <div id="resultado" style="display:none;">
+        <div class="resultado" id="resultado" style="display:none;">
             <h2>Resultado:</h2>
             <p id="resultado-texto"></p>
+            <button id="botao_reiniciar" class="botao_reinicio" style="display: none;">Reiniciar Quiz</button>
         </div>
     </div>
 
@@ -62,7 +75,7 @@
                 titulo: "Quando você faz uma viagem o que costuma mais te interessar pelo caminho?",
                 opcoes: [
                     { descricao: "As estradas e os caminhos pelo qual estou passando", personagem: "Hermes", chale: '11' },
-                    { descricao: "As construções e aruqiteturas", personagem: "Atena", chale: '6' },
+                    { descricao: "As construções e arquiteturas", personagem: "Atena", chale: '6' },
                     { descricao: "Os rios, lagos, cachoeiras ou praias", personagem: "Poseidon", chale: '3' },
                     { descricao: "Eventos pela cidade", personagem: "Dionísio", chale: '12' },
                     { descricao: "A própria paisagem, a natureza, o relevo, as flores", personagem: "Afrodite", chale: '10' },
@@ -94,15 +107,16 @@
             {
                 titulo: "Hipotéticamente, se você fosse para uma batalha, qual dessas armas usaria?",
                 opcoes: [
-                    { descricao: 'Arco e flexa <br><img src="assets/imgs/arco_e_flexa.png" alt="">', personagem: "Apolo", chale: '7' },
-                    { descricao: 'Espada <br><img src="assets/imgs/espada.jpg" alt="">', personagem: "Poseidon", chale: '3' },
-                    { descricao: 'Escudo e lança <br><img src="assets/imgs/escudo_lanca.png" alt="">', personagem: "Atena", chale: '6' },
-                    { descricao: 'Cajado <br><img src="assets/imgs/cajado.png" alt="">', personagem: "Dionísio", chale: '12' },
-                    { descricao: 'Caduceu <br><img src="assets/imgs/caduceu.png" alt="">', personagem: "Hermes", chale: '11' },
-                    { descricao: 'Espada de pérolas <br><img src="assets/imgs/espada_de_perolas.png" alt="">', personagem: "Afrodite", chale: '10' }
+                    { descricao: 'Arco e flexa <br><img style="border: solid 3px black;margin-left:20px; width: 100px ;height: 100px;" src="assets/imgs/arco_e_flexa.png" alt="">', personagem: "Apolo", chale: '7' },
+                    { descricao: 'Espada <br><img style="border: solid 3px black;margin-left:20px; width: 100px;height: 100px;" src="assets/imgs/espada.jpg" alt="">', personagem: "Poseidon", chale: '3' },
+                    { descricao: 'Escudo e lança <br><img style="border: solid 3px black;margin-left:20px; width: 100px;height: 100px;" src="assets/imgs/escudo_lanca.png" alt="">', personagem: "Atena", chale: '6' },
+                    { descricao: 'Cajado <br><img style="border: solid 3px black;margin-left:20px; width: 100px;height: 100px;" src="assets/imgs/cajado.png" alt="">', personagem: "Dionísio", chale: '12' },
+                    { descricao: 'Caduceu <br><img style="border: solid 3px black;margin-left:20px; width:100px;height: 100px;" src="assets/imgs/caduceu.png" alt="">', personagem: "Hermes", chale: '11' },
+                    { descricao: 'Espada de pérolas <br><img style="border: solid 3px black;margin-left:20px; width: 100px;height: 100px;" src="assets/imgs/espada_de_perolas.png" alt="">', personagem: "Afrodite", chale: '10' }
                 ],
             }
         ];
+    
 
         var indiceQuestaoAtual = 0;
         var pontos = {
@@ -113,8 +127,11 @@
             Dionísio: 0,
             Apolo: 0
         };
-
+        
         var botao_iniciar_quiz = document.getElementById("botao-iniciar-quiz");
+        var titulo_inicio = document.getElementById("titulo_inicio");
+        var capa = document.getElementById("capa");
+        var botao_reiniciar = document.getElementById("botao_reiniciar");
         var main_quiz = document.getElementById("main-quiz");
         var perguntaTitulo = document.getElementById("pergunta-titulo");
         var resposta1 = document.getElementById("resposta1");
@@ -155,29 +172,50 @@
         }
 
         function exibirResultado() {
-        var personagemMaisPontuado = '';
-        var maiorPontuacao = 0;
-        var chaleMaisPontuado = ''; 
+            var personagemMaisPontuado = '';
+            var maiorPontuacao = 0;
+            var chaleMaisPontuado = ''; 
 
-    
-        for (var i = 0; i < 6; i++) {
-        var personagem = lista_perguntas[i].opcoes[0].personagem;
-        var chale = lista_perguntas[i].opcoes[0].chale; 
-        if (pontos[personagem] > maiorPontuacao) {
-            maiorPontuacao = pontos[personagem];
-            personagemMaisPontuado = personagem;
-            chaleMaisPontuado = chale;
+            // Itera para encontrar o personagem mais pontuado
+            for (var personagem in pontos) {
+                if (pontos[personagem] > maiorPontuacao) {
+                    maiorPontuacao = pontos[personagem];
+                    personagemMaisPontuado = personagem;
+                    chaleMaisPontuado = lista_perguntas[0].opcoes[0].chale; // Troque conforme necessário
+                }
+            }
+
+            resultadoTexto.innerText = 'Você é como ' + personagemMaisPontuado + ' e o seu chale é ' + chaleMaisPontuado;
+            resultado.style.display = 'block';
+            main_quiz.style.display = 'none';
+            botao_reiniciar.style.display = 'block';  // Exibe o botão de reiniciar
         }
-    }
-
-    resultadoTexto.innerText = 'Você é como ' + personagemMaisPontuado + ' e o seu chale é ' + chaleMaisPontuado;
-    resultado.style.display = 'block';
-    main_quiz.style.display = 'none';
-}
 
         botao_iniciar_quiz.onclick = function() {
-            botao_iniciar_quiz.style.display = 'none';
-            main_quiz.style.display = 'block';
+            
+            // botao_iniciar_quiz.style.display = 'none';
+            capa.style.display = 'none'; // Esconde a capa do quiz
+            main_quiz.style.display = 'flex';  // Mostra o quiz
+            mostrarPergunta();
+        };
+
+        botao_reiniciar.onclick = function() {
+            // Reinicia as variáveis
+            indiceQuestaoAtual = 0;
+            pontos = {
+                Atena: 0,
+                Poseidon: 0,
+                Afrodite: 0,
+                Hermes: 0,
+                Dionísio: 0,
+                Apolo: 0
+            };
+
+            // Esconde o resultado e mostra o quiz novamente
+            resultado.style.display = 'none';
+            main_quiz.style.display = 'flex';
+            botao_reiniciar.style.display = 'none';
+
             mostrarPergunta();
         };
 
