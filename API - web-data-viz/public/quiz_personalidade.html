@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Personalidade</title>
+    <link rel="stylesheet" href="css/quiz_personalidade.css">
+    <link href="https://fonts.cdnfonts.com/css/ritalin" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/windlass" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/imgs/icone home.png" alt="Ícone Home">
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div class="main-content">
+        <div class="main-quiz" id="main-quiz" style="display: none;">
+            <div class="pergunta" id="pergunta-titulo"></div>
+            <div class="respostas">
+                <div class="resposta_style"> 
+                    <div class="resposta" id="resposta1"></div>
+                    <div class="resposta" id="resposta2"></div>
+                    <div class="resposta" id="resposta3"></div>
+                </div>
+                <div class="resposta_style">
+                    <div class="resposta" id="resposta4"></div>
+                    <div class="resposta" id="resposta5"></div>
+                    <div class="resposta" id="resposta6"></div>
+                </div>
+            </div>
+        </div> 
+        <div class="capa_quiz" id="capa">
+            <h1 style="text-shadow:1px 1px 1px white;">No universo de Percy Jackson, quem seria seu pai ou mãe?</h1>
+            <button id="botao-iniciar-quiz" class="botao_inicio">Iniciar Quiz</button>
+        </div>
+        <div class="resultado" id="resultado" style="display:none;">
+            <h2>Resultado:</h2>
+            <p id="resultado-texto"></p>
+            <p id="textoPersonagem"></p>
+            <button id="botao_reiniciar" class="botao_reinicio" style="display: none;">Reiniciar Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        var lista_perguntas = [
+            {
+                titulo: "O que você mais gosta de fazer no seu tempo livre?",
+                opcoes: [
+                    { descricao: "Ler ou estudar", personagem: "Atena", chale: '6' },
+                    { descricao: "Nadar ou andar a cavalo", personagem: "Poseidon", chale: '3' },
+                    { descricao: "Passear no shopping e ver as novas tendências", personagem: "Afrodite", chale: '10' },
+                    { descricao: "Viajar e fazer trilhas", personagem: "Hermes", chale: '11' },
+                    { descricao: "Ir para uma boa festa e se divertir", personagem: "Dionísio", chale: '12' },
+                    { descricao: "Pintar, desenhar ou fazer outra atividade artística", personagem: "Apolo", chale: '7' }
+                ],
+            },
+            {
+                titulo: "Qual era a sua disciplina favorita na escola?",
+                opcoes: [
+                    { descricao: "Biologia", personagem: "Poseidon", chale: '3' },
+                    { descricao: "Física", personagem: "Apolo", chale: '7' },
+                    { descricao: "Filosofia", personagem: "Atena", chale: '6' },
+                    { descricao: "Geografia", personagem: "Hermes", chale: '11' },
+                    { descricao: "Literatura", personagem: "Afrodite", chale: '10' },
+                    { descricao: "Artes", personagem: "Dionísio", chale: '12' }
+                ],
+            },
+            {
+                titulo: "Quando você faz uma viagem o que costuma mais te interessar pelo caminho?",
+                opcoes: [
+                    { descricao: "As estradas e os caminhos pelo qual estou passando", personagem: "Hermes", chale: '11' },
+                    { descricao: "As construções e arquiteturas", personagem: "Atena", chale: '6' },
+                    { descricao: "Os rios, lagos, cachoeiras ou praias", personagem: "Poseidon", chale: '3' },
+                    { descricao: "Eventos pela cidade", personagem: "Dionísio", chale: '12' },
+                    { descricao: "A própria paisagem, a natureza, o relevo, as flores", personagem: "Afrodite", chale: '10' },
+                    { descricao: "Os sons, as melodias e a mudança de luz na paisagem", personagem: "Apolo", chale: '7' }
+                ],
+            },
+            {
+                titulo: "Se você pudesse escolher um super poder qual seria?",
+                opcoes: [
+                    { descricao: "Respirar de baixo da água", personagem: "Poseidon", chale: '3' },
+                    { descricao: "Ter todo o conhecimento do mundo", personagem: "Atena", chale: '6' },
+                    { descricao: "Se teletransportar para qualquer lugar", personagem: "Hermes", chale: '11' },
+                    { descricao: "Transformar qualquer objeto em algo novo", personagem: "Dionísio", chale: '12' },
+                    { descricao: "Poder de cura para ajudar os doentes", personagem: "Apolo", chale: '7' },
+                    { descricao: "Criar paisagens harmônicas para a natureza", personagem: "Afrodite", chale: '10' }
+                ],
+            },
+            {
+                titulo: "Você teve uma discussão com um colega de trabalho, como age para resolver a situação?",
+                opcoes: [
+                    { descricao: "Levaria o colega para almoçar e se divertir, afinal o importante é viver o presente", personagem: "Dionísio", chale: '12' },
+                    { descricao: "Pensaria rapidamente em uma solução, para que o problema não fique maior", personagem: "Hermes", chale: '11' },
+                    { descricao: "Procuraria limpar a mente primeiro para resolver o problema com empatia, me colocando no lugar do outro", personagem: "Afrodite", chale: '10' },
+                    { descricao: "Refletiria sobre o ocorrido, e conversaria com o colega com sinceridade sobre os meus pensamentos", personagem: "Apolo", chale: '7' },
+                    { descricao: "Manteria a calma e tentaria encontrar uma solução equilibrada para ambos", personagem: "Poseidon", chale: '3' },
+                    { descricao: "Pensaria em estratégias claras e bem feitas para conversar com ele", personagem: "Atena", chale: '6' }
+                ],
+            },
+            {
+                titulo: "Hipotéticamente, se você fosse para uma batalha, qual dessas armas usaria?",
+                opcoes: [
+                    { descricao: 'Arco e flexa <br><img style="border: solid 3px black;margin-left:20px; width: 100px ;height: 100px;" src="assets/imgs/arco_e_flexa.png" alt="">', personagem: "Apolo", chale: '7' },
+                    { descricao: 'Espada <br><img style="border: solid 3px black;margin-left:20px; width: 100px;height: 100px;" src="assets/imgs/espada.jpg" alt="">', personagem: "Poseidon", chale: '3' },
+                    { descricao: 'Escudo e lança <br><img style="border: solid 3px black;margin-left:20px; width: 100px;height: 100px;" src="assets/imgs/escudo_lanca.png" alt="">', personagem: "Atena", chale: '6' },
+                    { descricao: 'Cajado <br><img style="border: solid 3px black;margin-left:20px; width: 100px;height: 100px;" src="assets/imgs/cajado.png" alt="">', personagem: "Dionísio", chale: '12' },
+                    { descricao: 'Caduceu <br><img style="border: solid 3px black;margin-left:20px; width:100px;height: 100px;" src="assets/imgs/caduceu.png" alt="">', personagem: "Hermes", chale: '11' },
+                    { descricao: 'Espada de pérolas <br><img style="border: solid 3px black;margin-left:20px; width: 100px;height: 100px;" src="assets/imgs/espada_de_perolas.png" alt="">', personagem: "Afrodite", chale: '10' }
+                ],
+            }
+        ];
+
+        var indiceQuestaoAtual = 0;
+        var pontos = {
+            Atena: 0,
+            Poseidon: 0,
+            Afrodite: 0,
+            Hermes: 0,
+            Dionísio: 0,
+            Apolo: 0
+        };
+
+        var capa = document.getElementById("capa");
+        var main_quiz = document.getElementById("main-quiz");
+        var perguntaTitulo = document.getElementById("pergunta-titulo");
+        var resposta1 = document.getElementById("resposta1");
+        var resposta2 = document.getElementById("resposta2");
+        var resposta3 = document.getElementById("resposta3");
+        var resposta4 = document.getElementById("resposta4");
+        var resposta5 = document.getElementById("resposta5");
+        var resposta6 = document.getElementById("resposta6");
+        var resultado = document.getElementById("resultado");
+        var resultadoTexto = document.getElementById("resultado-texto");
+        var textoPersonagem = document.getElementById("textoPersonagem");
+        var botao_iniciar_quiz = document.getElementById("botao-iniciar-quiz");
+        var botao_reiniciar = document.getElementById("botao_reiniciar");
+
+        function mostrarPergunta() {
+            if (indiceQuestaoAtual < lista_perguntas.length) {
+                var pergunta = lista_perguntas[indiceQuestaoAtual];
+                perguntaTitulo.innerText = pergunta.titulo;
+
+                resposta1.innerHTML = pergunta.opcoes[0].descricao;
+                resposta2.innerHTML = pergunta.opcoes[1].descricao;
+                resposta3.innerHTML = pergunta.opcoes[2].descricao;
+                resposta4.innerHTML = pergunta.opcoes[3].descricao;
+                resposta5.innerHTML = pergunta.opcoes[4].descricao;
+                resposta6.innerHTML = pergunta.opcoes[5].descricao;
+            }
+        }
+
+        function processarResposta(opcao) {
+            pontos[opcao.personagem]++;
+            if (indiceQuestaoAtual === lista_perguntas.length - 1) {
+                exibirResultado();
+            } else {
+                indiceQuestaoAtual++;
+                mostrarPergunta();
+            }
+        }
+
+        function exibirResultado() {
+            var personagemMaisPontuado = '';
+            var maiorPontuacao = 0;
+            var chaleMaisPontuado = '';
+
+            for (var personagem in pontos) {
+                if (pontos[personagem] > maiorPontuacao) {
+                    maiorPontuacao = pontos[personagem];
+                    personagemMaisPontuado = personagem;
+                }
+            }
+
+            for (var i = 0; i < lista_perguntas.length; i++) {
+                var opcoes = lista_perguntas[i].opcoes;
+                for (var j = 0; j < opcoes.length; j++) {
+                    if (opcoes[j].personagem === personagemMaisPontuado) {
+                        chaleMaisPontuado = opcoes[j].chale;
+                    }
+                }
+            }
+
+            var textoPersonagemFinal = {
+                Atena: "Você é muito sábio e estratégico, assim como a deusa Atena.",
+                Poseidon: "Você ama estar perto do mar e da água. Seu espírito é aventureiro e conectado com a natureza.",
+                Afrodite: "Você é muito vaidoso e amoroso, assim como a deus Afrodite,",
+                Hermes: "Assim como Hermes, você adora adimirar os caminhos e tem muita engenhosidade e curiosidade.",
+                Dionísio: "Você é a alma da festa e adora sair com os amigos, assim como Dionísio",
+                Apolo: "Sua luz, harmonia e paixão pelas artes são iguais ao do deus Apolo"
+            };
+
+            textoPersonagem.innerText = textoPersonagemFinal[personagemMaisPontuado];
+            resultadoTexto.innerHTML = `Bem-vindo, filho de <strong>${personagemMaisPontuado}</strong>. Pode ir para o seu chalé nº ${chaleMaisPontuado}`;
+            resultado.style.display = 'flex';
+            main_quiz.style.display = 'none';
+            botao_reiniciar.style.display = 'block';
+        }
+
+        botao_iniciar_quiz.onclick = function() {
+            capa.style.display = 'none';
+            main_quiz.style.display = 'flex';
+            mostrarPergunta();
+        };
+
+        botao_reiniciar.onclick = function() {
+            indiceQuestaoAtual = 0;
+            for (var personagem in pontos) pontos[personagem] = 0;
+            resultado.style.display = 'none';
+            main_quiz.style.display = 'flex';
+            botao_reiniciar.style.display = 'none';
+            mostrarPergunta();
+        };
+
+        resposta1.onclick = () => processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[0]);
+        resposta2.onclick = () => processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[1]);
+        resposta3.onclick = () => processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[2]);
+        resposta4.onclick = () => processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[3]);
+        resposta5.onclick = () => processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[4]);
+        resposta6.onclick = () => processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[5]);
+    </script>
+</body

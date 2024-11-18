@@ -1,82 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>AquaTech | Página Inicial</title>
-
-    <script src="./js/sessao.js"></script>
-
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <title>Camp half-blood</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.cdnfonts.com/css/windlass" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Caesar+Dressing&family=Texturina:ital,opsz,wght@0,12..72,100..900;1,12..72,100..900&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <div class="header">
-      <div class="container">
-        <h1 class="titulo">AquaTech</h1>
-        <ul class="navbar">
-          <li class="agora">
-            <a href="#">Inicial</a>
-          </li>
-          <li>
-            <a href="simulador.html">Simulador</a>
-          </li>
-          <li>|</li>
-          <li>
-            <a href="login.html">Login</a>
-          </li>
-          <li>
-            <a href="cadastro.html">Cadastro</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  
-    <div class="banner">
-      <div class="container">
-        <p>Preservando <span>hoje</span> para existirem <span>amanhã</span>.</p>
-      </div>
-    </div>
-  
-    <div class="social">
-      <div class="container">
-        <div class="boxes">
-          <div class="box">
-            <img src="assets/imgs/planet-earth_color.png">
-            <h4>Missão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/lightbulb_color.png">
-            <h4>Visão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/growth_color.png">
-            <h4>Valores</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <div class="footer">
-      <div class="container">
-        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-        <span class="version">v1.0.0</span>
-      </div>
-    </div>
-  </body>
+    <header> 
+        <nav class="nav">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/imgs/icone home.png">
+                </a>
+            </div>
+            <div class="links">
+                <ul class="nav_list">
+                    <li><a href=# class="logo">Minha história</a></li>
+                    <li><a href=#>Saga</a></li>
+                    <li><a href=#>Livros</a></li>
+                    <li><a href="#">Personagens</a></li>
+                    <li><a href=#>Educacão de qualidade</a></li>
+                    <li><a href=#>Jogo</a></li>
+                    <li><a href=#>Quizzes</a></li>
+                </ul>
+            </div>
+            <div class="btns">
+                <button onclick="window.location.href='cadastro.html'">Cadastro</button>
+                <button class="login" onclick="window.location.href='login.html'">Login</button>
+            </div>        
+        </nav>
+    </header>
 
+    <div class="main-content">
+        <div class="background_img"></div>
+        <div class="sobre_mim">
+            <div class="coroa-container">
+                <img src="assets/imgs/coroa.png" alt="Coroa" class="coroa-img">
+                <img src="assets/imgs/minha_foto.jpeg" alt="Imagem Interna" class="interna-img">
+            </div>
+        <div class="texto_sobre_mim">
+                <h1>Sobre Mim</h1>
+                <p>Olá, sejam bem-vindos ao Camp Half-Blood (ou, traduzindo, Acampamento Meio-Sangue)!</p>
+                <p>Meu nome é Giovanna, tenho 22 anos e estou cursando Análise e Desenvolvimento de Sistemas na São Paulo Tech School.</p>
+                <p>Meu objetivo com este site é compartilhar um pouco sobre o universo de Percy Jackson e mostrar como essa saga se torna muito mais do que apenas um livro ou uma história de fantasia.</p>
+            </div>    
+        <div class="relacao_mitologia">
+                <h1>Relacão com a mitologia grega</h1>
+                <p>Desde a infância, eu sempre gostei de fantasia. Lembro que minhas primeiras aulas de literatura no ensino fundamental foram sobre os contos da mitologia grega. A primeira história que ouvi na escola foi sobre o Cavalo de Tróia na aula de informática no qual a professora nos explicou sobre a história que leva o nome do vírus, e, desde então, só fui conhecendo mais e mais sobre a mitologia e me apaixonei por esse mundo.</p>
+        </div> 
+
+        <div class="relacao_livros">
+            <h1>Minha relacão com a série e os livros</h1>
+                <p>A minha relação com os livros e a história começou enquanto eu estava viajando com a minha família em um chalé quando tinha 12 anos, enquanto estávamos assistindo televisão e passava o filme em inglês, pois tinha recém lançado. Juntando o meu interesse prévio por mitologia com uma história adolescente que estava inserida com o meu mundo da época fiquei encantada pela história e desde então passei a querer saber mais sobre ela. Foi então que descobri que não existia apenas um filme, ou um livro e sim uma série de livros com não só uma, mas cinco histórias do mesmo universo, nunca fui uma pessoa que gostava de ler, mas esse filme me cativou o suficiente para me interessar pela leitura, principalmente por querer saber mais da história. </p>
+        </div>
+        <div class="lingua_inglesa">
+            <h1>Incentivo a língua inglesa</h1>
+            <p>Foi então que quando estava viajando em um chalé com a minha família vi passar na televisão o primeiro filme de Percy Jackson, o filme passava em inglês então foi muito importante para mim, pois foi o primeiro contato que tive com a língua que posteriormente se tornaria uma das minhas paixões</p>
+
+        </div>
+    </div>
+    
+</body>
 </html>
