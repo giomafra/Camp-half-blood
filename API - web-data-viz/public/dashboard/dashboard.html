@@ -6,9 +6,10 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="../css/dashboard.css">
     <link href="https://fonts.cdnfonts.com/css/windlass" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
-<body>
+<body  onload="obterDados()">
     <div class="main_container">
         <div class="barra_lateral">
             <div class="btn_voltar">
@@ -16,7 +17,7 @@
             </div>
             <div class="perfil">
             </div>
-            <div class="nome">
+            <div class="ipt_usuario">
                 <h3>Nome</h3>
             </div>
                 <div class="navegacao">
@@ -42,13 +43,136 @@
         </div>
         <div class="main_areas">
             <div class="campos_graficos">
-                <div class="campo">
+                <div class="campo1">
+                    <canvas id="linha"></canvas>
                 </div>
             </div>
             <div class="campos_graficos">
-                <div class="campo"></div>
+                <div class="campo2">
+                    <canvas id="barra"></canvas>
+
+                </div>
             </div>
         </div>
     </div>
 </body>
 </html>
+
+<script>
+    function obterDados(){
+  // Aqui seria a função que obteria os dados do banco de dados
+  // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
+ 
+  // fetch('/obterDados')
+  // .then(function(response){
+  //   return response.json();
+  // })
+  // .then(function(data){
+  //   plotarGraficoLinha(data);
+  //   plotarGraficoBarra(data);
+  // })
+  // .catch(function(err){
+  //   console.log(err);
+  // })
+
+  // Como eu não configurei as rotas, eu criei um array com os dados para simular a obtenção dos dados
+  var dados = [{
+    jogador:'Endrick',
+    votos: 10
+  },
+  {
+    jogador:'João',
+    votos: 5
+  },
+  {
+    jogador:'Maria',
+    votos: 15
+  },
+  {
+    jogador:'José',
+    votos: 20
+  },
+  {
+    jogador:'Pedro',
+    votos: 25
+  },
+  {
+    jogador:'Ana',
+    votos: 30
+  }]
+
+  // Chamando a função para plotar o gráfico de linha com os dados
+  plotarGraficoLinha(dados);
+  // Chamando a função para plotar o gráfico de barra com os dados
+  plotarGraficoBarra(dados)
+}
+
+// Função para plotar o gráfico de linha
+function plotarGraficoLinha(dados){
+  
+  // Separando os rótulos (labels) e os dados dos votos
+  var votos = [];
+  var jogadores = [];
+
+  // Preenchendo os arrays com os dados
+  for(var i = 0; i < dados.length; i++){
+    votos.push(dados[i].votos);
+    jogadores.push(dados[i].jogador);
+  }
+
+  // Capturando o elemento canvas pelo id 
+  var ctx = document.getElementById('linha').getContext('2d');
+  // Criando o gráfico de linha usando o Chart.js
+  var myChart = new Chart(ctx, {
+      type: 'line', // Tipo de gráfico: linha
+      data: { // Dados para o gráfico
+          labels: jogadores, // Rótulos no eixo X
+          datasets: [{ 
+              label: 'Votos', // Nome do conjunto de dados
+              data: votos, // Dados dos votos
+              backgroundColor: [
+                  'white', // Cor de fundo das linhas
+              ],
+              borderColor: [
+                  'white', // Cor da borda das linhas
+              ],
+              borderWidth: 1 // Largura da borda das linhas
+          }]
+      },
+  });
+} 
+
+// Função para plotar o gráfico de barra
+function plotarGraficoBarra(dados){
+
+  var votos = [];
+  var jogadores = [];
+
+  // Preenchendo os arrays com os dados
+  for(var i = 0; i < dados.length; i++){
+    votos.push(dados[i].votos);
+    jogadores.push(dados[i].jogador);
+  }
+
+  // Capturando o elemento canvas pelo id 
+  var ctx = document.getElementById('barra').getContext('2d');
+  // Criando o gráfico de barra usando o Chart.js
+  var myChart = new Chart(ctx, {
+      type: 'bar', // Tipo de gráfico: barra
+      data: { // Dados para o gráfico
+          labels: jogadores, // Rótulos no eixo X
+          datasets: [{
+              label: 'Votos', // Nome do conjunto de dados
+              data: votos, // Dados dos votos
+              backgroundColor: [
+                  'white', // Cor de fundo das barras
+              ],
+              borderColor: [
+                  'white', // Cor da borda das barras
+              ],
+              borderWidth: 3 // Largura da borda das barras
+          }]
+      },
+  });
+}
+</script>

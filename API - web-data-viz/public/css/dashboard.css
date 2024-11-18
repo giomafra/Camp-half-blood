@@ -17,6 +17,7 @@
     background-color: #184042eb;
     border-right: 3px solid white;
     display: flex;
+    align-items: center;
     flex-direction: column;
 ;
 }
@@ -38,11 +39,23 @@
     justify-content: space-around;
     flex-direction: column;
 }
-.campo{
+.campo1{
     width: 90%;
     height: 70%;
     align-self: center;
-    background: #a5440fcf; 
+    background: #a5440f; 
+    border: solid 2px black;
+    border-radius: 25px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.campo2{
+    width: 90%;
+    height: 70%;
+    align-self: center;
+    background: #a5440f; 
     border: solid 2px black;
     border-radius: 25px;
     display: flex;
@@ -170,7 +183,7 @@
     margin-left: 10px;
 }
 .ranking h3{
-    font-size: 23px;
+    font-size: 25px;
     font-family: windlass, sans-serif;
     color: white;
     text-shadow: 6px 6px 8px rgb(0, 0, 0);
@@ -190,4 +203,10 @@
     height: 60px;
     width: 35px;
 
+}
+#linha{
+    z-index: 2;
+}
+#barra{
+    z-index: 2;
 }

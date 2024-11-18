@@ -200,6 +200,19 @@
             resultado.style.display = 'flex';
             main_quiz.style.display = 'none';
             botao_reiniciar.style.display = 'block';
+
+            fetch(`/resultado/2/${sessionStorage.ID_USUARIO}/${personagemMaisPontuado}`, { method: "POST", cache: 'no-store' }).then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Resultado inserido com sucesso!`);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na inserção do resultado: ${error}`);
+            })
         }
 
         botao_iniciar_quiz.onclick = function() {
