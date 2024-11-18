@@ -47,7 +47,7 @@ nav {
     border-radius: 30px;
     z-index: 2;
     border: solid 3px black;
-    display: none; /* Mantém o quiz oculto inicialmente */
+    display: none; 
     justify-content: center;
     flex-direction: column;
     align-items: center;

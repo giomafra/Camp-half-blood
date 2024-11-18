@@ -40,10 +40,8 @@
             <button id="botao-iniciar-quiz" class="botao_inicio" onclick="iniciarQuiz()">Iniciar Quiz</button>
         </div>
 
-        <!-- Div de introdução do quiz -->
 
 
-        <!-- Div com o resultado final -->
         <div class="resultado" id="resultado" style="display:none;">
             <h2>Resultado:</h2>
             <p id="resultado-texto"></p>
@@ -147,19 +145,14 @@
     }
 
     function iniciarQuiz() {
-        // Esconde a capa
         document.getElementById('capa').style.display = "none"; 
 
-        // Mostra o quiz
         document.getElementById('main-quiz').style.display = "flex"; 
 
-        // Preenche a pergunta e as alternativas
         preencherHTMLcomQuestaoAtual(); 
 
-        // Exibe o botão "Próxima"
         document.getElementById('btnProx').style.display = "inline-block"; 
 
-        // Esconde o botão "Concluir" até a última pergunta
         document.getElementById('btnConcluir').style.display = "none"; 
     }
     
@@ -180,15 +173,12 @@
             resposta.style.backgroundColor = '';
         });
 
-        // Marcar a resposta selecionada
         document.getElementById('resposta' + id).style.backgroundColor = 'lightgreen';
 
-        // Guardar a resposta selecionada
         respostasSelecionadas[numeroDaQuestaoAtual] = id;
 
         
 
-        // Exibir o botão "Próxima"
         document.getElementById('btnProx').style.display = "inline-block";
     }
 
@@ -196,28 +186,23 @@
         const questao = listaDeQuestoes[numeroDaQuestaoAtual];
         const respostaSelecionada = respostasSelecionadas[numeroDaQuestaoAtual];
 
-        // Verifica se o usuário selecionou uma resposta
         if (!respostaSelecionada) {
             alert("Por favor, selecione uma resposta.");
-            return; // Não faz nada se nenhuma resposta foi selecionada
+            return;
         }
 
-        // Verifica se a resposta está correta
         if (respostaSelecionada === questao.alternativaCorreta) {
             pontuacaoFinal++;
         }
 
-        // Avança para a próxima questão
         numeroDaQuestaoAtual++;
 
-        // Verifica se há mais questões
         if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
             preencherHTMLcomQuestaoAtual();
         } else {
             mostrarResultado();
         }
 
-        // Esconde o botão "Próxima"
         document.getElementById('btnProx').style.display = "none";
     }
 
