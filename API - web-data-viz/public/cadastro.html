@@ -8,7 +8,6 @@
     <link href="https://fonts.cdnfonts.com/css/windlass" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/border-animation.css">
-
 </head>
 <body>
     <div class="container">
@@ -16,42 +15,96 @@
             <div class="image-section">
             </div>
         </div>
-
         <div class="right-section">
             <div class="formulario_todo"> 
                 <div class="titulo_cadastro">
-                <h3>Cadastre-se aqui</h3>        
+                    <h3>Cadastre-se aqui</h3>        
                 </div>
                 <div class="formulario">
-                <div class="input-group">
-                    <i class="fas fa-user"></i>
-                    <input id="input_nome" placeholder="Nome" type="text" oninput="validarNome()" />
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input id="input_nome" placeholder="Nome" type="text" />
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input id="input_email" placeholder="E-mail" type="text" />
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input id="input_senha" placeholder="Senha" type="password" />
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-unlock"></i>
+                        <input id="input_senha_confirmacao" placeholder="Confirmação de senha" type="password" />
+                    </div>
+                    <span>Selecione um personagem :</span>
+                    <select class="formulario" id="input_personagem">
+                        <option value="1">Percy Jackson</option>
+                        <option value="2">Annabeth Chase</option>
+                        <option value="3">Grover Underwoold</option>
+                        <option value="4">Nico di Angelo</option>
+                        <option value="5">Luke Castellan</option>
+                    </select>
+                    <button class="cadastrar" onclick="cadastrar()">Cadastrar</button>
                 </div>
-                <div class="input-group">
-                    <i class="fas fa-envelope"></i>
-                    <input id="input_email" placeholder="E-mail" type="text" oninput="validarEmail()" />
-                </div>
-                <div class="input-group">
-                    <i class="fas fa-lock"></i>
-                    <input id="input_senha" placeholder="Senha" type="password" oninput="validarSenha()" />
-                </div>
-                <div class="input-group">
-                    <i class="fas fa-unlock"></i>
-                    <input id="input_senha_confirmacao" placeholder="Confirmação de senha" type="password" oninput="validarSenha()" />
-                </div>
-
-                <span>Selecione um personagem :</span>
-                <select class="formulario" id="input_personagem">
-                    <option value="Percy">Percy Jackson</option>
-                    <option value="Annabeth">Annabeth Chase</option>
-                    <option value="Grover">Grover Underwoold</option>
-                    <option value="Nico">Nico di angelo</option>
-                    <option value="Luke">Luke Castellan</option>
-                </select>
-                <button class="cadastrar">Cadastrar</button>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>
+
+
+<script>
+    function cadastrar(){
+        var nome = input_nome.value
+        var email = input_email.value
+        var senha = input_senha.value
+        var confirmacao = input_senha_confirmacao.value
+        var personagem = input_personagem.value
+
+              // Enviando o valor da nova input
+      fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          nomeServer: nome,
+          emailServer: email,
+          senhaServer: senha,
+          confirmacaoServer: confirmacao,
+          personagem: personagem
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+  
+          if (resposta.ok) {
+            //   cardErro.style.display = "block";
+  
+            //   mensagem_erro.innerHTML =
+            alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+  
+            setTimeout(() => {
+              window.location = "login.html";
+            }, "2000");
+  
+            limparFormulario();
+  
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+  
+        });
+  
+      return false;
+}
+    
+
+    
+</script>

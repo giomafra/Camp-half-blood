@@ -89,6 +89,11 @@ body, html {
     height: 50px;
     border-bottom: 2px solid #b84e00;
     width: 100%; 
+    color: white;
+}
+.input-group input:focus {
+    color: white; 
+    outline: none
 }
 
 input::placeholder {
