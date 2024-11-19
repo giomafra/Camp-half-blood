@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Personalidade</title>
-    <link rel="stylesheet" href="css/quiz_personalidade.css">
+    <link rel="stylesheet" href="../css/quiz_personalidade.css">
     <link href="https://fonts.cdnfonts.com/css/ritalin" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/windlass" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <nav class="nav">
@@ -22,7 +24,7 @@
         <div class="main-quiz" id="main-quiz" style="display: none;">
             <div class="pergunta" id="pergunta-titulo"></div>
             <div class="respostas">
-                <div class="resposta_style"> 
+                <div class="resposta_style">
                     <div class="resposta" id="resposta1"></div>
                     <div class="resposta" id="resposta2"></div>
                     <div class="resposta" id="resposta3"></div>
@@ -33,7 +35,7 @@
                     <div class="resposta" id="resposta6"></div>
                 </div>
             </div>
-        </div> 
+        </div>
         <div class="capa_quiz" id="capa">
             <h1 style="text-shadow:1px 1px 1px white;">No universo de Percy Jackson, quem seria seu pai ou mãe?</h1>
             <button id="botao-iniciar-quiz" class="botao_inicio">Iniciar Quiz</button>
@@ -189,7 +191,7 @@
             var textoPersonagemFinal = {
                 Atena: "Você é muito sábio e estratégico, assim como a deusa Atena.",
                 Poseidon: "Você ama estar perto do mar e da água. Seu espírito é aventureiro e conectado com a natureza.",
-                Afrodite: "Você é muito vaidoso e amoroso, assim como a deus Afrodite,",
+                Afrodite: "Você é muito vaidoso e amoroso, assim como a deusa Afrodite,",
                 Hermes: "Assim como Hermes, você adora adimirar os caminhos e tem muita engenhosidade e curiosidade.",
                 Dionísio: "Você é a alma da festa e adora sair com os amigos, assim como Dionísio",
                 Apolo: "Sua luz, harmonia e paixão pelas artes são iguais ao do deus Apolo"
@@ -201,27 +203,52 @@
             main_quiz.style.display = 'none';
             botao_reiniciar.style.display = 'block';
 
-            fetch(`/resultado/2/${sessionStorage.ID_USUARIO}/${personagemMaisPontuado}`, { method: "POST", cache: 'no-store' }).then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (resposta) {
-                        console.log(`Resultado inserido com sucesso!`);
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
+            fetch("/personalidade/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    personagemMaisPontuadoServer: personagemMaisPontuado,
+                    chaleServer: chaleMaisPontuado,
+                    idUsuarioServer: sessionStorage.ID_USUARIO
+                }),
             })
-            .catch(function (error) {
-                console.error(`Erro na inserção do resultado: ${error}`);
-            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+                        //   cardErro.style.display = "block";
+
+                        //   mensagem_erro.innerHTML =
+                        alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+
+                        setTimeout(() => {
+                            window.location = "login.html";
+                        }, "2000");
+
+                        limparFormulario();
+
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+
+                });
+
         }
 
-        botao_iniciar_quiz.onclick = function() {
+        botao_iniciar_quiz.onclick = function () {
             capa.style.display = 'none';
             main_quiz.style.display = 'flex';
             mostrarPergunta();
         };
 
-        botao_reiniciar.onclick = function() {
+        botao_reiniciar.onclick = function () {
             indiceQuestaoAtual = 0;
             for (var personagem in pontos) pontos[personagem] = 0;
             resultado.style.display = 'none';
@@ -230,11 +257,25 @@
             mostrarPergunta();
         };
 
-        resposta1.onclick = () => processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[0]);
-        resposta2.onclick = () => processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[1]);
-        resposta3.onclick = () => processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[2]);
-        resposta4.onclick = () => processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[3]);
-        resposta5.onclick = () => processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[4]);
-        resposta6.onclick = () => processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[5]);
+        resposta1.onclick = function () {
+            processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[0]);
+        };
+        resposta2.onclick = function () {
+            processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[1]);
+        };
+        resposta3.onclick = function () {
+            processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[2]);
+        };
+        resposta4.onclick = function () {
+            processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[3]);
+        };
+        resposta5.onclick = function () {
+            processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[4]);
+        };
+        resposta6.onclick = function () {
+            processarResposta(lista_perguntas[indiceQuestaoAtual].opcoes[5]);
+        };
+
+
     </script>
 </body
