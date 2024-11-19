@@ -41,7 +41,7 @@
 }
 .campo1{
     width: 90%;
-    height: 70%;
+    height: 90%;
     align-self: center;
     background: #a5440f; 
     border: solid 2px black;
@@ -51,18 +51,7 @@
     justify-content: center;
     align-items: center;
 }
-.campo2{
-    width: 90%;
-    height: 70%;
-    align-self: center;
-    background: #a5440f; 
-    border: solid 2px black;
-    border-radius: 25px;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-}
+
 .perfil{
     margin-top: 10px;
     align-self: center;
