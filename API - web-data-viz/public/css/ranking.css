@@ -48,8 +48,8 @@
     border-radius: 25px;
     display: flex;
     text-align: center;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
 }
 
 .perfil{
@@ -212,4 +212,24 @@
 }
 #barra{
     z-index: 2;
+}
+
+.segundo{
+    width: 200px;
+    height: 400px;
+    background-color: black;
+    margin-top: 25.8%;
+}
+
+.primeiro{
+    width: 200px;
+    height: 600px;
+    background-color: black;
+    margin-top: 9.6%;
+}
+.terceiro{
+    width: 200px;
+    height: 350px;
+    background-color: black;
+    margin-top: 30%;
 }
