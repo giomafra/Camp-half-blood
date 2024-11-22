@@ -22,7 +22,19 @@ function cadastrar( chaleMaisPontuado, personagemMaisPontuado, ID_USUARIO) {
     return database.executar(instrucaoSql);
 }
 
+function personagemMaisTirado() {
+    var instrucaoSql = `
+    SELECT personagem, COUNT(personagem) AS qtd_escolhas
+    FROM quizz_personalidade
+    GROUP BY personagem
+    ORDER BY qtd_escolhas DESC;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    personagemMaisTirado
 };

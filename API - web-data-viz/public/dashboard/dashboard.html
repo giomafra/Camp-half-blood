@@ -8,7 +8,7 @@
     <link href="https://fonts.cdnfonts.com/css/windlass" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body  onload="obterDados()">
+<body  onload="personagemMaisTirado()">
     <div class="main_container">
         <div class="barra_lateral">
             <div class="btn_voltar">
@@ -58,47 +58,24 @@
 </html>
 
 <script>
-    function obterDados(){
+    function personagemMaisTirado(){
   // Aqui seria a função que obteria os dados do banco de dados
   // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
  
-  // fetch('/obterDados')
-  // .then(function(response){
-  //   return response.json();
-  // })
-  // .then(function(data){
-  //   plotarGraficoLinha(data);
-  //   plotarGraficoBarra(data);
-  // })
-  // .catch(function(err){
-  //   console.log(err);
-  // })
+  fetch('/personagemMaisTirado')
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data){
+    plotarGraficoLinha(data);
+    plotarGraficoBarra(data);
+  })
+  .catch(function(err){
+    console.log(err);
+  })
 
   // Como eu não configurei as rotas, eu criei um array com os dados para simular a obtenção dos dados
-  var dados = [{
-    jogador:'Endrick',
-    votos: 10
-  },
-  {
-    jogador:'João',
-    votos: 5
-  },
-  {
-    jogador:'Maria',
-    votos: 15
-  },
-  {
-    jogador:'José',
-    votos: 20
-  },
-  {
-    jogador:'Pedro',
-    votos: 25
-  },
-  {
-    jogador:'Ana',
-    votos: 30
-  }]
+  
 
   // Chamando a função para plotar o gráfico de linha com os dados
   plotarGraficoLinha(dados);

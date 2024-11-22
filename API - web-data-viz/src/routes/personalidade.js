@@ -7,9 +7,15 @@ var personalidadeController = require("../controllers/personalidadeController");
 router.post("/cadastrar", function (req, res) {
     personalidadeController.cadastrar(req, res);
 })
+router.post("/cadastrar", function (req, res) {
+    personalidadeController.cadastrar(req, res);
+})
 
 router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.get("/personagemMaisTirado", function (req, res){
+    personalidadeController.personagemMaisTirado(req, res)
+});
 module.exports = router;
