@@ -79,31 +79,19 @@ function cadastrar(req, res) {
 }
 
 function tracosPersonalidade(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-
     var ID_USUARIO = req.params.IDUSUARIO;
+    console.log(`Recebendo ID_USUARIO: ${ID_USUARIO} para traços de personalidade`);
 
-
-    // Faça as validações dos valores
-
-        // Passe os valores como parâmetro e vá para o arquivo personalidadeModel.js
-        personalidadeModel.tracosPersonalidade(ID_USUARIO)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage)
-                    ;
-                }
-            );
-    }
+    personalidadeModel.tracosPersonalidade(ID_USUARIO).then(function(result) {
+        if (result.length > 0) {
+            res.status(200).json(result[0].personagem); // Envia apenas o 'personagem' para o frontend
+        } else {
+            res.status(404).json({ mensagem: "Nenhum dado encontrado" });
+        }
+    }).catch(function(error) {
+        res.status(500).json({ mensagem: "Erro ao consultar a base de dados", erro: error });
+    });
+}
 
     
 

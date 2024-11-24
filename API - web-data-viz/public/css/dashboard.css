@@ -31,6 +31,7 @@
 
 }
 .campos_graficos{
+    margin-top: 60px;
     gap: 10px;
     width:  100%;
     height: 100%;
@@ -43,7 +44,7 @@
     width: 90%;
     height: 70%;
     align-self: center;
-    background: #a5440f; 
+    background: linear-gradient(to top, #ef7d3f, white);; 
     border: solid 2px black;
     border-radius: 25px;
     display: flex;
@@ -55,13 +56,13 @@
     width: 90%;
     height: 70%;
     align-self: center;
-    background: #a5440f; 
+    background: linear-gradient(to top,  #ef7d3f, white);; 
     border: solid 2px black;
     border-radius: 25px;
     display: flex;
-    text-align: center;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 .perfil{
     margin-top: 10px;
@@ -228,13 +229,87 @@
     max-height: 100%;
 }
 
-.kpi_personagem{
-    background-color: black;
-    width: 300px;
-    height: 100px;
+.titulos_kpis {
+    width: 1480px;
+    height: 140px;
+    position: absolute; /* Posiciona o elemento fora do fluxo normal */
+    top: 0; /* Coloca no topo */
+    left: 20%; /* Move para o meio horizontal */
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
-.nome_gráfico {
-    background-color: black;
-    width: 300px;
+
+.grafico_linha {
+    background: linear-gradient(to bottom, #61bad4, white);
+    width: 570px;
     height: 100px;
+    padding-right: 5px;
+    margin-right: 20px;
+    border: solid 2px black;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.grafico_linha h3{
+    color: rgb(0, 0, 0);
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+    font-size: 26px;
+    font-family: windlass, sans-serif;
+    font-weight: 900;
+    text-decoration: underline;
+
+
+}
+
+.grafico_pie {
+    background: linear-gradient(to bottom, #61bad4, white);
+    width: 570px;
+    height: 100px;
+    border: solid 2px black;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grafico_pie h3{
+    color: rgb(0, 0, 0);
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+    font-size: 26px;
+    font-family: windlass, sans-serif;
+    font-weight: 900;
+    text-decoration: underline;
+}
+
+.kpi_personagem {
+    width: 690px;
+    height: 60px;
+    position: absolute; /* Para posicionar em cima */
+    top: 0; /* Coloca ela no topo */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.grafico_pizza{
+    width: 98%;
+    height: 90%;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#deus_personalidade{
+    font-size: 25px;
+    font-family: 'FTY SKORZHEN NCV', sans-serif;
+                                                                                                                                                
+
+}
+
+

@@ -27,7 +27,7 @@ function tracosPersonalidade(ID_USUARIO) {
 
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
-    var instrucaoSql = `
+    var instrucaoSql2 = `
         SELECT
         p.personagem
         FROM quizz_personalidade as p
@@ -37,8 +37,8 @@ function tracosPersonalidade(ID_USUARIO) {
         fkUsuario = idUsuario
         WHERE fkUsuario = ${ID_USUARIO} ;
     `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
+    console.log("Executando a instrução SQL: \n" + instrucaoSql2);
+    return database.executar(instrucaoSql2);
 }
 
 

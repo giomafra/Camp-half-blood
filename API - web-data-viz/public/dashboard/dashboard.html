@@ -6,21 +6,22 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="../css/dashboard.css">
     <link href="https://fonts.cdnfonts.com/css/windlass" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/fty-skorzhen-ncv" rel="stylesheet">
+                                
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body  onload="obterDados()">
+<body onload="obterDados()">
     <div class="main_container">
         <div class="barra_lateral">
             <div class="btn_voltar">
                 <img src="../assets/imgs/Vector (2).png" alt="">
             </div>
-            <div class="perfil">
-            </div>
+            <div class="perfil"></div>
             <div class="ipt_usuario">
                 <h3 id="b_usuario">Nome</h3>
             </div>
-                <div class="navegacao">
-             <div class="dados">
+            <div class="navegacao">
+                <div class="dados">
                     <img src="../assets/imgs/dados_icon.png">
                     <button>DADOS</button>
                 </div>
@@ -28,7 +29,7 @@
                     <img src="../assets/imgs/trofeu_icon (2).png" alt="">
                     <button onclick="location.href='ranking.html'">RANKING</button>
                 </div>
-             <div class="card_dia">
+                <div class="card_dia">
                     <img src="../assets/imgs/card_dash.png" alt="">
                     <button>CARD DO DIA</button>
                 </div>
@@ -36,12 +37,17 @@
                     <img src="../assets/imgs/configuracoes-removebg-preview.png" alt="">
                     <button>CONFIGURAÇÕES DA CONTA</button>
                 </div>
-        </div>
-
-
+            </div>
         </div>
         <div class="main_areas">
-            <div class="titulos_kpis"></div>
+            <div class="titulos_kpis">
+                <div class="grafico_linha">
+                    <h3>Desempenho no quiz de conhecimentos</h3>
+                </div>
+                <div class="grafico_pie">
+                    <h3>Características da sua personalidade</h3>
+                </div>
+            </div>
             <div class="campos_graficos">
                 <div class="campo1">
                     <canvas id="linha"></canvas>
@@ -49,8 +55,12 @@
             </div>
             <div class="campos_graficos">
                 <div class="campo2">
-                    <canvas id="pie"></canvas>
-
+                    <div class="kpi_personagem">
+                        <h3 id="deus_personalidade"></h3>
+                    </div>
+                    <div class="grafico_pizza">
+                        <canvas id="pie"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,64 +70,80 @@
 
 <script>
     b_usuario.innerHTML = `${sessionStorage.NOME_USUARIO}`
-//     function tracosPersonalidade(){
-        
-//   fetch(`/personalidade/tracosPersonalidade/${sessionStorage.ID_USUARIO}`, { cache: 'no-store' }).then(function (response) {
-//             if (response.ok) {
-//                 response.json().then(function (resposta) {
-//                     plotarGraficoLinha(resposta);
-//                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
+    function obterDados() {
+        // Obter dados para o gráfico de linha
+        fetch(`/conhecimento/obteracertos/${sessionStorage.ID_USUARIO}`, { cache: 'no-store' })
+            .then(response => {
+                if (response.ok) {
+                    response.json().then(resposta => {
+                        plotarGraficoLinha(resposta);
+                        console.log(`Dados recebidos para gráfico de linha: ${JSON.stringify(resposta)}`);
+                    });
+                } else {
+                    console.error('Erro na API de dados para gráfico de linha');
+                }
+            })
+            .catch(error => console.error(`Erro na obtenção dos dados para gráfico de linha: ${error.message}`));
 
-//                 });
-//             } else {
-//                 console.error('Nenhum dado encontrado ou erro na API');
-//             }
-//         })
-//             .catch(function (error) {
-//                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-//             });
-            
+        // Obter dados para o gráfico de pizza
+        fetch(`/personalidade/tracosPersonalidade/${sessionStorage.ID_USUARIO}`, { cache: 'no-store' })
+            .then(response => {
+                if (response.ok) {
+                    response.json().then(resposta => {
+                        // Exibir o texto com base na personalidade
+                        document.getElementById("deus_personalidade").innerHTML = `
+                        Parabéns, filho de <span style="border: 2px solid #000; padding: 2px; border-radius: 5px; background-color: #d48431; font-weight: bold;">${resposta}</span>, 
+                        aqui estão os seus traços de semi-deus:
+                        `;
 
-//     }
+                        console.log(`Dados recebidos para traços de personalidade: ${resposta}`);
 
-    function obterDados(){
+                        // Criar os dados fictícios baseados na resposta
+                        var dadosPie;
+                        if(resposta === 'Poseidon') {
+                            dadosPie = {
+                                porcentagem: [30, 25, 20, 15, 10],
+                                deus: ["Impulsivo", "Orgulhoso", "Protetor", "Generoso", "Passional"]
+                            };
+                        } else if(resposta === 'Apolo') {
+                            dadosPie = {
+                                porcentagem: [30, 25, 20, 15, 10],
+                                deus: ["Artístico", "Sábio", "Equilibrado", "Charmoso", "Orgulhoso"]
+                            };
+                        } else if(resposta === 'Atena') {
+                            dadosPie = {
+                                porcentagem: [30, 25, 20, 15, 10],
+                                deus: ["Sábio", "Justo", "Corajoso", "Protetor", "Autônomo"]
+                            };
+                        } else if(resposta === 'Hermes') {
+                            dadosPie = {
+                                porcentagem: [30, 25, 20, 15, 10],
+                                deus: ["Criativo", "Comunicador", "Divertido", "Ágil", "Curioso"]
+                            };
+                        } else if(resposta === 'Afrodite') {
+                            dadosPie = {
+                                porcentagem: [30, 25, 20, 15, 10],
+                                deus: ["Sedutor", "Carinhoso", "Manipulador", "Vaidoso", "Curioso"]
+                            };
+                        } else if(resposta === 'Dionísio') {
+                            dadosPie = {
+                                porcentagem: [30, 25, 20, 15, 10],
+                                deus: ["Divertido", "Criativo", "Instável", "Vaidoso", "Comunicador"]
+                            };
+                        }
 
-  // Aqui seria a função que obteria os dados do banco de dados
-  // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
- 
-  fetch(`/conhecimento/obteracertos/${sessionStorage.ID_USUARIO}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    plotarGraficoLinha(resposta);
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        // Chamar função para plotar o gráfico de pizza com os dados
+                        plotarGraficoPizza(dadosPie);
+                    });
+                } else {
+                    console.error('Erro na API de personalidade');
+                }
+            })
+            .catch(error => console.error(`Erro na obtenção dos dados de personalidade: ${error.message}`));
+    }
 
-
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-            
-  
-
-
-  // Como eu não configurei as rotas, eu criei um array com os dados para simular a obtenção dos dados
-
-  // Chamando a função para plotar o gráfico de linha com os dados
-
-  // Chamando a função para plotar o gráfico de barra com os dados
-//   plotarGraficoBarra(dados)
-  
-
-  
-}
-
-// Função para plotar o gráfico de linha
-function formatarData(data){
+    function formatarData(data){
     var ano = ""
     var mes = ""
     var dia = ""
@@ -186,7 +212,7 @@ function plotarGraficoLinha(dados){
             legend: {
                 display: true,
                 labels: {
-                    color: '#fff', // Cor do texto da legenda
+                    color: '#000', // Cor do texto da legenda
                     font: {
                         size: 14 // Tamanho da fonte da legenda
                     }
@@ -195,10 +221,10 @@ function plotarGraficoLinha(dados){
             tooltip: {
                 enabled: true,
                 backgroundColor: 'rgba(0, 0, 0, 0.7)', // Fundo do tooltip
-                titleColor: '#fff', // Cor do título no tooltip
-                bodyColor: '#fff', // Cor do texto no tooltip
+                titleColor: '#000', // Cor do título no tooltip
+                bodyColor: '#000', // Cor do texto no tooltip
                 borderWidth: 1,
-                borderColor: '#fff',
+                borderColor: '#000',
             }
         },
         scales: {
@@ -212,101 +238,90 @@ function plotarGraficoLinha(dados){
                     padding: 12
                 },
                 grid: {
-                    color: 'rgba(255, 255, 255, 0.5)', // Linhas da grade mais claras e visíveis
+                    color: '#000', // Linhas da grade mais claras e visíveis
                     lineWidth: 1.5 // Aumenta a espessura das linhas da grade
                 }
             },
             y: {
                 ticks: {
-                    color: '#fff', // Cor dos rótulos no eixo Y
+                    color: '#000', // Cor dos rótulos no eixo Y
                     font: {
                         size: 12 // Tamanho da fonte do eixo Y
                     }
                 },
                 grid: {
-                    color: 'rgba(255, 255, 255, 0.5)', // Linhas da grade mais claras e visíveis
+                    color: '#000', // Linhas da grade mais claras e visíveis
                     lineWidth: 1.5 // Aumenta a espessura das linhas da grade
                 }
             }
         }
     }
 });
-
-
-
-
-
-
 } 
 
-// Função para plotar o gráfico de barra
-function plotarGraficoBarraPizza(dados) {
-            var votos = dados.votos;
-            var jogadores = dados.jogadores;
+    function plotarGraficoPizza(dados) {
+        var porc = dados.porcentagem;
+        var deuses = dados.deus;
+        var total = porc.reduce((a, b) => a + b, 0);
 
-            var total = votos.reduce((a, b) => a + b, 0); // Calcula o total dos votos
-
-            var ctx = document.getElementById('pie').getContext('2d');
-            var myPieChart = new Chart(ctx, {
-                type: 'pie', // Tipo de gráfico: pizza
-                data: {
-                    labels: jogadores, // Rótulos para cada segmento (jogadores ou categorias)
-                    datasets: [{
-                        data: votos, // Dados para cada segmento
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)', // Cor do segmento A
-                            'rgba(54, 162, 235, 0.2)', // Cor do segmento B
-                            'rgba(75, 192, 192, 0.2)', // Cor do segmento C
-                            'rgba(255, 206, 86, 0.2)'  // Cor do segmento D
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)', // Cor da borda do segmento A
-                            'rgba(54, 162, 235, 1)', // Cor da borda do segmento B
-                            'rgba(75, 192, 192, 1)', // Cor da borda do segmento C
-                            'rgba(255, 206, 86, 1)'  // Cor da borda do segmento D
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true, // Gráfico responsivo
-                    plugins: {
-                        legend: {
-                            position: 'top', // Posição da legenda
-                            labels: {
-                                color: '#333', // Cor do texto da legenda
-                                font: {
-                                    size: 14 // Tamanho da fonte da legenda
-                                }
-                            }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(tooltipItem) {
-                                    var dataset = tooltipItem.dataset;
-                                    var index = tooltipItem.dataIndex;
-                                    var value = dataset.data[index];
-                                    var percentage = ((value / total) * 100).toFixed(2); // Calcula a porcentagem
-                                    return `${tooltipItem.label}: ${percentage}%`; // Exibe o rótulo e a porcentagem
-                                }
-                            },
-                            backgroundColor: 'rgba(0, 0, 0, 0.7)', // Cor do tooltip
-                            titleColor: '#fff', // Cor do título do tooltip
-                            bodyColor: '#fff', // Cor do texto do tooltip
-                            borderWidth: 1,
-                            borderColor: '#fff'
-                        }
+        var ctx = document.getElementById('pie').getContext('2d');
+        var myPieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: deuses,
+        datasets: [{
+            data: porc,
+            backgroundColor: [
+                'rgba(70, 130, 180, 0.6)',  // Azul Aço
+                'rgba(112, 128, 144, 0.6)', // Cinza Ardósia
+                'rgba(60, 179, 113, 0.6)',  // Verde Médio
+                'rgba(255, 140, 0, 0.6)',   // Laranja Escuro
+                'rgba(139, 69, 19, 0.6)'    // Marrom Siena
+            ],
+            borderColor: [
+                '#000', // Preto como borda para todas as cores
+                '#000',
+                '#000',
+                '#000',
+                '#000'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+                labels: {
+                    color: '#000',
+                    font: {
+                        size: 14
                     }
                 }
-            });
+            },
+            tooltip: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        var dataset = tooltipItem.dataset;
+                        var index = tooltipItem.dataIndex;
+                        var value = dataset.data[index];
+                        var percentage = ((value / total) * 100).toFixed(2);
+                        return `${tooltipItem.label}: ${percentage}%`;
+                    }
+                },
+                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                titleColor: '#fff',
+                bodyColor: '#fff',
+                borderWidth: 1,
+                borderColor: '#000'
+            }
         }
+    }
+});
 
-        // Dados fictícios
-        var dadosFicticios = {
-            votos: [10, 20, 30, 40],
-            jogadores: ["Jogador A", "Jogador B", "Jogador C", "Jogador D"]
-        };
+    }
 
-        // Chamar a função com os dados fictícios
-        plotarGraficoBarraPizza(dadosFicticios);
+    // Chama a função para obter dados e plotar gráficos
+    obterDados();
 </script>
