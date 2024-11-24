@@ -8,7 +8,7 @@
     <link href="https://fonts.cdnfonts.com/css/windlass" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body  onload="personagemMaisTirado()">
+<body  onload="obterDados()">
     <div class="main_container">
         <div class="barra_lateral">
             <div class="btn_voltar">
@@ -17,7 +17,7 @@
             <div class="perfil">
             </div>
             <div class="ipt_usuario">
-                <h3>Nome</h3>
+                <h3 id="b_usuario">Nome</h3>
             </div>
                 <div class="navegacao">
              <div class="dados">
@@ -41,6 +41,7 @@
 
         </div>
         <div class="main_areas">
+            <div class="titulos_kpis"></div>
             <div class="campos_graficos">
                 <div class="campo1">
                     <canvas id="linha"></canvas>
@@ -48,7 +49,7 @@
             </div>
             <div class="campos_graficos">
                 <div class="campo2">
-                    <canvas id="barra"></canvas>
+                    <canvas id="pie"></canvas>
 
                 </div>
             </div>
@@ -58,97 +59,254 @@
 </html>
 
 <script>
-    function personagemMaisTirado(){
+    b_usuario.innerHTML = `${sessionStorage.NOME_USUARIO}`
+//     function tracosPersonalidade(){
+        
+//   fetch(`/personalidade/tracosPersonalidade/${sessionStorage.ID_USUARIO}`, { cache: 'no-store' }).then(function (response) {
+//             if (response.ok) {
+//                 response.json().then(function (resposta) {
+//                     plotarGraficoLinha(resposta);
+//                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+
+//                 });
+//             } else {
+//                 console.error('Nenhum dado encontrado ou erro na API');
+//             }
+//         })
+//             .catch(function (error) {
+//                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+//             });
+            
+
+//     }
+
+    function obterDados(){
+
   // Aqui seria a função que obteria os dados do banco de dados
   // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
  
-  fetch('/personagemMaisTirado')
-  .then(function(response){
-    return response.json();
-  })
-  .then(function(data){
-    plotarGraficoLinha(data);
-    plotarGraficoBarra(data);
-  })
-  .catch(function(err){
-    console.log(err);
-  })
+  fetch(`/conhecimento/obteracertos/${sessionStorage.ID_USUARIO}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    plotarGraficoLinha(resposta);
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-  // Como eu não configurei as rotas, eu criei um array com os dados para simular a obtenção dos dados
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+            
   
 
+
+  // Como eu não configurei as rotas, eu criei um array com os dados para simular a obtenção dos dados
+
   // Chamando a função para plotar o gráfico de linha com os dados
-  plotarGraficoLinha(dados);
+
   // Chamando a função para plotar o gráfico de barra com os dados
-  plotarGraficoBarra(dados)
+//   plotarGraficoBarra(dados)
+  
+
+  
 }
 
 // Função para plotar o gráfico de linha
+function formatarData(data){
+    var ano = ""
+    var mes = ""
+    var dia = ""
+    var minutos = ""
+    var hora = ""
+
+    for(var i = 0; i < data.length; i++){
+        if(i <= 3){
+            ano += data[i]
+        }
+        else if(i <= 6 && data[i] != '-'){
+            mes += data[i]
+        }
+        else if(i <= 9 && data[i] != '-'){
+            dia += data[i]
+        }
+        else if(i == 15 || i == 14 ){
+            minutos += data[i]
+        }
+        else if(i == 18 || i == 17 ){
+            hora += data[i]
+        }
+    }
+    return dataFormatada = `${dia}/${mes}/${ano} ${hora}:${minutos}`
+    
+}
 function plotarGraficoLinha(dados){
   
   // Separando os rótulos (labels) e os dados dos votos
-  var votos = [];
-  var jogadores = [];
+  var acertos = [];
+  var dtHora = [];
 
   // Preenchendo os arrays com os dados
   for(var i = 0; i < dados.length; i++){
-    votos.push(dados[i].votos);
-    jogadores.push(dados[i].jogador);
+    var dataFormatada = formatarData(dados[i].data_hora)
+    acertos.push(dados[i].qtdAcertos);
+    dtHora.push(dataFormatada);
+
   }
+
 
   // Capturando o elemento canvas pelo id 
   var ctx = document.getElementById('linha').getContext('2d');
   // Criando o gráfico de linha usando o Chart.js
   var myChart = new Chart(ctx, {
-      type: 'line', // Tipo de gráfico: linha
-      data: { // Dados para o gráfico
-          labels: jogadores, // Rótulos no eixo X
-          datasets: [{ 
-              label: 'Votos', // Nome do conjunto de dados
-              data: votos, // Dados dos votos
-              backgroundColor: [
-                  'white', // Cor de fundo das linhas
-              ],
-              borderColor: [
-                  'white', // Cor da borda das linhas
-              ],
-              borderWidth: 1 // Largura da borda das linhas
-          }]
-      },
-  });
+    type: 'line', // Tipo de gráfico: linha
+    data: { // Dados para o gráfico
+        labels: dtHora, // Rótulos no eixo X
+        datasets: [{
+            label: 'Acertos', // Nome do conjunto de dados
+            data: acertos, // Dados dos votos
+            backgroundColor: 'rgba(0, 128, 255, 0.1)', // Leve preenchimento abaixo da linha
+            borderColor: 'blue', // Vermelho vibrante para a linha
+            borderWidth: 4, // Espessura da linha
+            pointBackgroundColor: 'blue', // Pontos em amarelo vibrante
+            pointBorderColor: '#000', // Borda dos pontos em preto
+            pointBorderWidth: 3, // Espessura da borda dos pontos
+            pointRadius: 6, // Pontos maiores
+            tension: 0.4 // Suavidade das linhas
+        }]
+    },
+    options: {
+        responsive: true, // O gráfico será responsivo
+        maintainAspectRatio: false, // Ajusta o gráfico ao espaço da div
+        plugins: {
+            legend: {
+                display: true,
+                labels: {
+                    color: '#fff', // Cor do texto da legenda
+                    font: {
+                        size: 14 // Tamanho da fonte da legenda
+                    }
+                }
+            },
+            tooltip: {
+                enabled: true,
+                backgroundColor: 'rgba(0, 0, 0, 0.7)', // Fundo do tooltip
+                titleColor: '#fff', // Cor do título no tooltip
+                bodyColor: '#fff', // Cor do texto no tooltip
+                borderWidth: 1,
+                borderColor: '#fff',
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: '#000', // Cor preta para os rótulos no eixo X
+                    font: {
+                        size: 14, // Tamanho da fonte do eixo X
+                        weight: 'bold' // Deixa os rótulos do eixo X em negrito
+                    },
+                    padding: 12
+                },
+                grid: {
+                    color: 'rgba(255, 255, 255, 0.5)', // Linhas da grade mais claras e visíveis
+                    lineWidth: 1.5 // Aumenta a espessura das linhas da grade
+                }
+            },
+            y: {
+                ticks: {
+                    color: '#fff', // Cor dos rótulos no eixo Y
+                    font: {
+                        size: 12 // Tamanho da fonte do eixo Y
+                    }
+                },
+                grid: {
+                    color: 'rgba(255, 255, 255, 0.5)', // Linhas da grade mais claras e visíveis
+                    lineWidth: 1.5 // Aumenta a espessura das linhas da grade
+                }
+            }
+        }
+    }
+});
+
+
+
+
+
+
 } 
 
 // Função para plotar o gráfico de barra
-function plotarGraficoBarra(dados){
+function plotarGraficoBarraPizza(dados) {
+            var votos = dados.votos;
+            var jogadores = dados.jogadores;
 
-  var votos = [];
-  var jogadores = [];
+            var total = votos.reduce((a, b) => a + b, 0); // Calcula o total dos votos
 
-  // Preenchendo os arrays com os dados
-  for(var i = 0; i < dados.length; i++){
-    votos.push(dados[i].votos);
-    jogadores.push(dados[i].jogador);
-  }
+            var ctx = document.getElementById('pie').getContext('2d');
+            var myPieChart = new Chart(ctx, {
+                type: 'pie', // Tipo de gráfico: pizza
+                data: {
+                    labels: jogadores, // Rótulos para cada segmento (jogadores ou categorias)
+                    datasets: [{
+                        data: votos, // Dados para cada segmento
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)', // Cor do segmento A
+                            'rgba(54, 162, 235, 0.2)', // Cor do segmento B
+                            'rgba(75, 192, 192, 0.2)', // Cor do segmento C
+                            'rgba(255, 206, 86, 0.2)'  // Cor do segmento D
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)', // Cor da borda do segmento A
+                            'rgba(54, 162, 235, 1)', // Cor da borda do segmento B
+                            'rgba(75, 192, 192, 1)', // Cor da borda do segmento C
+                            'rgba(255, 206, 86, 1)'  // Cor da borda do segmento D
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true, // Gráfico responsivo
+                    plugins: {
+                        legend: {
+                            position: 'top', // Posição da legenda
+                            labels: {
+                                color: '#333', // Cor do texto da legenda
+                                font: {
+                                    size: 14 // Tamanho da fonte da legenda
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    var dataset = tooltipItem.dataset;
+                                    var index = tooltipItem.dataIndex;
+                                    var value = dataset.data[index];
+                                    var percentage = ((value / total) * 100).toFixed(2); // Calcula a porcentagem
+                                    return `${tooltipItem.label}: ${percentage}%`; // Exibe o rótulo e a porcentagem
+                                }
+                            },
+                            backgroundColor: 'rgba(0, 0, 0, 0.7)', // Cor do tooltip
+                            titleColor: '#fff', // Cor do título do tooltip
+                            bodyColor: '#fff', // Cor do texto do tooltip
+                            borderWidth: 1,
+                            borderColor: '#fff'
+                        }
+                    }
+                }
+            });
+        }
 
-  // Capturando o elemento canvas pelo id 
-  var ctx = document.getElementById('barra').getContext('2d');
-  // Criando o gráfico de barra usando o Chart.js
-  var myChart = new Chart(ctx, {
-      type: 'bar', // Tipo de gráfico: barra
-      data: { // Dados para o gráfico
-          labels: jogadores, // Rótulos no eixo X
-          datasets: [{
-              label: 'Votos', // Nome do conjunto de dados
-              data: votos, // Dados dos votos
-              backgroundColor: [
-                  'white', // Cor de fundo das barras
-              ],
-              borderColor: [
-                  'white', // Cor da borda das barras
-              ],
-              borderWidth: 3 // Largura da borda das barras
-          }]
-      },
-  });
-}
+        // Dados fictícios
+        var dadosFicticios = {
+            votos: [10, 20, 30, 40],
+            jogadores: ["Jogador A", "Jogador B", "Jogador C", "Jogador D"]
+        };
+
+        // Chamar a função com os dados fictícios
+        plotarGraficoBarraPizza(dadosFicticios);
 </script>

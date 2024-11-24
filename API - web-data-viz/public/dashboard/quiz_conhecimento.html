@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz de conhecimento</title>
-    <link rel="stylesheet" href="css/quiz_conhecimentos.css">
+    <link rel="stylesheet" href="../css/quiz_conhecimentos.css">
     <link href="https://fonts.cdnfonts.com/css/ritalin" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/windlass" rel="stylesheet">
 </head>
@@ -211,6 +211,45 @@
         document.getElementById('resultado').style.display = "flex";
         document.getElementById('resultado-texto').innerHTML = "SUA PONTUAÇÃO É " + pontuacaoFinal + " de " + quantidadeDeQuestoes;
         document.getElementById('btnConcluir').style.display = "none";
+        var erros = quantidadeDeQuestoes - pontuacaoFinal
+
+        fetch("/conhecimento/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    qtdQuestoesServer: quantidadeDeQuestoes,
+                    qtdAcertosServer: pontuacaoFinal,
+                    qtdErrosServer: erros,
+                    idUsuarioServer: sessionStorage.ID_USUARIO
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+                        //   cardErro.style.display = "block";
+
+                        //   mensagem_erro.innerHTML =
+                        alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+
+                        setTimeout(() => {
+                            window.location = "login.html";
+                        }, "2000");
+
+                        limparFormulario();
+
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+
+                });
     }
 
     function reiniciarQuiz() {

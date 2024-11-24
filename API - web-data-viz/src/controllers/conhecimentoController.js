@@ -1,4 +1,4 @@
-var personalidadeModel = require("../models/personalidadeModel");
+var conhecimentoModel = require("../models/conhecimentoModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -47,20 +47,19 @@ function autenticar(req, res) {
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var chaleMaisPontuado = req.body.chaleServer;
-    var personagemMaisPontuado = req.body.personagemMaisPontuadoServer;
+    var quantidadeDeQuestoes = req.body.qtdQuestoesServer;
+    var pontuacaoFinal = req.body.qtdAcertosServer;
+    var erros = req.body.qtdErrosServer;
     var ID_USUARIO = req.body.idUsuarioServer;
 
 
     // Faça as validações dos valores
-    if (personagemMaisPontuado == undefined) {
+    if (quantidadeDeQuestoes == undefined) {
         res.status(400).send("Seu personagem está undefined!");
-    } else if (chaleMaisPontuado == undefined) {
-        res.status(400).send("Seu chale está undefined!");
     }  else {
 
         // Passe os valores como parâmetro e vá para o arquivo personalidadeModel.js
-        personalidadeModel.cadastrar(chaleMaisPontuado, personagemMaisPontuado, ID_USUARIO)
+        conhecimentoModel.cadastrar(quantidadeDeQuestoes, pontuacaoFinal, erros, ID_USUARIO)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -78,7 +77,7 @@ function cadastrar(req, res) {
     }
 }
 
-function tracosPersonalidade(req, res) {
+function obteracertos(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
 
     var ID_USUARIO = req.params.IDUSUARIO;
@@ -87,7 +86,7 @@ function tracosPersonalidade(req, res) {
     // Faça as validações dos valores
 
         // Passe os valores como parâmetro e vá para o arquivo personalidadeModel.js
-        personalidadeModel.tracosPersonalidade(ID_USUARIO)
+        conhecimentoModel.obteracertos(ID_USUARIO)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -105,11 +104,15 @@ function tracosPersonalidade(req, res) {
             );
     }
 
+
+
+
+
     
 
 
 module.exports = {
     autenticar,
     cadastrar,
-    tracosPersonalidade
+    obteracertos
 }

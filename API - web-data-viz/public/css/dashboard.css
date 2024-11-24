@@ -218,9 +218,23 @@
     width: 35px;
 
 }
-#linha{
-    z-index: 2;
+#linha {
+    width: 95%; /* Reduzi ligeiramente a largura */
+    height: 100vh; /* Diminuí um pouco a altura */
+    margin: auto; /* Centraliza o canvas na div */
+  }
+  canvas#pie {
+    max-width: 100%;
+    max-height: 100%;
 }
-#barra{
-    z-index: 2;
+
+.kpi_personagem{
+    background-color: black;
+    width: 300px;
+    height: 100px;
+}
+.nome_gráfico {
+    background-color: black;
+    width: 300px;
+    height: 100px;
 }
