@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking</title>
+    <link rel="stylesheet" href="../css/config.css">
+    <link href="https://fonts.cdnfonts.com/css/windlass" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/fty-skorzhen-ncv" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body onload="obterDados()">
+    <div class="main_container">
+        <div class="barra_lateral">
+            <div class="btn_voltar">
+                <img src="../assets/imgs/Vector (2).png" alt="">
+            </div>
+            <div id="foto_perfil" class="perfil"></div>
+            <div class="ipt_usuario">
+                <h3 id="b_usuario"></h3>
+            </div>
+            <div class="navegacao">
+                <div class="dados">
+                    <img src="../assets/imgs/dados_icon.png">
+                    <button onclick="window.location.href='dashboard.html'">DADOS</button>
+                </div>
+                <div class="ranking">
+                    <img src="../assets/imgs/trofeu_icon (2).png" alt="">
+                    <button onclick="window.location.href='ranking.html'">RANKING</button>
+                </div>
+                <div class="card_dia">
+                    <img src="../assets/imgs/card_dash.png" alt="">
+                    <button onclick="window.location.href='card.html'">CARD DO DIA</button>
+                </div>
+                <div class="conta">
+                    <img src="../assets/imgs/configuracoes-removebg-preview.png" alt="">
+                    <button onclick="location.href='config.html'">MUDAR FOTO DE PERFIL</button>
+                </div>
+            </div>
+        </div>
+        <div class="main_areas">
+            <div class="campos_graficos">
+                <div class="campo1">
+                    <div class="titulo_config">
+                        <h2>Escolha sua nova foto de perfil</h2>
+                    </div>
+                    <div class="icons">
+                        <div class="character">
+                            <button onclick="action1()"><img src="../assets/imgs/percy_perfil.png" alt="Botão 1"></button>
+                            <p>Percy</p>
+                        </div>
+                        <div class="character">
+                            <button onclick="action2()"><img src="../assets/imgs/annabeth_icon.png" alt="Botão 2"></button>
+                            <p>Annabeth</p>
+                        </div>
+                        <div class="character">
+                            <button onclick="action3()"><img src="../assets/imgs/grover_perfil.jpg" alt="Botão 3"></button>
+                            <p>Grover</p>
+                        </div>
+                        <div class="character">
+                            <button onclick="action4()"><img src="../assets/imgs/nico_perfil.png" alt="Botão 4"></button>
+                            <p>Nico</p>
+                        </div>
+                        <div class="character">
+                            <button onclick="action5()"><img src="../assets/imgs/luke_perfil.jpg" alt="Botão 5"></button>
+                            <p>Luke</p>
+                        </div>
+                        <div class="change-button">
+                            <button onclick="mudar()">Mudar foto</button>
+                        </div>
+                    </div>
+    </div>
+</body>
+</html>
+<script>
+    b_usuario.innerHTML = `${sessionStorage.NOME_USUARIO}`
+
+    if(sessionStorage.PERSONEGEM == 1){
+        foto_perfil.innerHTML = `<img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/percy_perfil.png" alt="">`
+    }
+    if(sessionStorage.PERSONEGEM == 2){
+        foto_perfil.innerHTML = `<img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/annabeth_icon.png" alt="">`
+    }
+    if(sessionStorage.PERSONEGEM == 3){
+        foto_perfil.innerHTML = `    <img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/grover_perfil.jpg" alt="">`
+    }
+    if(sessionStorage.PERSONEGEM == 4){
+        foto_perfil.innerHTML = `    <img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/nico_perfil.png" alt="">`
+    }
+    if(sessionStorage.PERSONEGEM == 5){
+        foto_perfil.innerHTML = `    <img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/luke_perfil.jpg" alt="">`
+    }
+
+    let personagemSelecionado = null;
+
+// Funções para selecionar os personagens
+function action1() {
+    personagemSelecionado = 1; // Percy
+    alert("Você selecionou Percy!  Clique em 'Mudar foto' para confirmar a sua escolha.");
+}
+function action2() {
+    personagemSelecionado = 2; // Annabeth
+    alert("Você selecionou Annabeth! Clique em 'Mudar foto' para confirmar a sua escolha.");
+}
+function action3() {
+    personagemSelecionado = 3; // Grover
+    alert("Você selecionou Grover! Clique em 'Mudar foto' para confirmar a sua escolha.");
+}
+function action4() {
+    personagemSelecionado = 4; // Nico
+    alert("Você selecionou Nico! Clique em 'Mudar foto' para confirmar a sua escolha.");
+}
+function action5() {
+    personagemSelecionado = 5; // Luke
+    alert("Você selecionou Luke! Clique em 'Mudar foto' para confirmar a sua escolha.");
+}
+
+// Função para mudar a foto de perfil
+    function mudar() {
+    if (personagemSelecionado === null) {
+        alert("Selecione um personagem antes de mudar a foto!");
+        return;
+    }
+
+    sessionStorage.PERSONEGEM = personagemSelecionado;
+
+    // Atualiza a foto de perfil com base no personagem selecionado
+    if (personagemSelecionado == 1) {
+        foto_perfil.innerHTML = `<img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/percy_perfil.png" alt="">`;
+    } else if (personagemSelecionado == 2) {
+        foto_perfil.innerHTML = `<img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/annabeth_icon.png" alt="">`;
+    } else if (personagemSelecionado == 3) {
+        foto_perfil.innerHTML = `<img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/grover_perfil.jpg" alt="">`;
+    } else if (personagemSelecionado == 4) {
+        foto_perfil.innerHTML = `<img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/nico_perfil.png" alt="">`;
+    } else if (personagemSelecionado == 5) {
+        foto_perfil.innerHTML = `<img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/luke_perfil.jpg" alt="">`;
+    }
+
+    alert("Foto de perfil alterada com sucesso!");
+}
+
+</script>

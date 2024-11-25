@@ -40,7 +40,7 @@
     flex-direction: column;
 }
 .campo1{
-    width: 90%;
+    width: 60%;
     height: 90%;
     align-self: center;
     background: linear-gradient(to top,  #ef7d3f, white);; 
@@ -48,8 +48,8 @@
     border-radius: 25px;
     display: flex;
     text-align: center;
-    justify-content: space-around;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .perfil{
@@ -74,7 +74,7 @@
 }
 .nome h3{
     color: white;
-    text-shadow: 6px 6px 8px rgb(0, 0, 0);
+    text-shadow: 4px 6px 8px rgb(0, 0, 0);
 }
 
 .conta{
@@ -205,33 +205,81 @@
     margin-left: 15px;
     height: 60px;
     width: 35px;
-
-}
-#linha{
-    z-index: 2;
-}
-#barra{
-    z-index: 2;
 }
 
-.segundo{
-    width: 200px;
-    height: 400px;
-    background-color: black;
-    margin-top: 25.8%;
+
+
+#titulo_historia {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
-.primeiro{
-    width: 200px;
-    height: 600px;
-    background-color: black;
-    margin-top: 9.6%;
+#historia {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+    text-align: justify;
+    max-width: 800px;
+    margin: 0 auto;
 }
-.terceiro{
-    width: 200px;
-    height: 350px;
-    background-color: black;
-    margin-top: 30%;
+
+.imagem_hist{
+    height: 250px;
+    width: 300px;
+    align-self: center;
+}
+
+.estilo_card{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    gap: 30px;
+}
+
+#titulo_historia{
+    font-family: 'FTY SKORZHEN NCV', sans-serif;
+    font-size: 40px;
+    text-decoration: underline;
+}
+
+#historia{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.botao_ver_card {
+    display: inline-block;
+    background-color: #cd6600; /* Azul vibrante */
+    color: #FFFFFF; /* Texto branco */
+    border: solid 4px black;
+    height: 100px;
+    width: 350px;
+    padding: 12px 20px;
+    font-size: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px; /* Bordas arredondadas */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+/* Efeito hover */
+.botao_ver_card:hover {
+    background-color: #d4771b; /* Azul mais escuro */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px); /* Elevação do botão */
+}
+
+/* Efeito ao clicar */
+.botao_ver_card:active {
+    background-color: #d4771b; /* Azul ainda mais escuro */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    transform: translateY(1px); /* Abaixar ao clicar */
 }
 
 #b_usuario{
@@ -241,55 +289,4 @@
 
 #foto_perfil{
     margin-bottom: 10px;
-}
-
-
-
-.podium-container {
-    display: flex;
-    justify-content: space-evenly; /* Ajusta o espaçamento entre as colunas */
-    align-items: flex-end;
-    gap: 40px; /* Espaçamento maior entre as colunas */
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.podium {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    border-radius: 5px;
-    text-align: center;
-    position: relative;
-    border: 2px solid black;
-}
-
-/* Estilos dos números */
-.podium span {
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    position: absolute;
-    bottom: 10px;
-}
-
-/* Colunas do pódio */
-.podium-1 {
-    background-color: #185f65; /* Vermelho */
-    width: 250px; /* Largura aumentada */
-    height: 600px; /* Altura ajustada */
-}
-
-.podium-2 {
-    background-color: #1f796f; /* Amarelo */
-    width: 250px; /* Largura aumentada */
-    height: 500px; /* Altura ajustada */
-}
-
-.podium-3 {
-    background-color: #197981; /* Verde */
-    width: 250px; /* Largura aumentada */
-    height: 400px; /* Altura ajustada */
 }

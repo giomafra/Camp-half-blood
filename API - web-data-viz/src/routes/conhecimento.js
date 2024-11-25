@@ -15,4 +15,8 @@ router.post("/autenticar", function (req, res) {
 router.get("/obteracertos/:IDUSUARIO", function (req, res) {
     conhecimentoController.obteracertos(req, res);
 });
+
+router.get("/obteranking/:IDUSUARIO", function (req, res) {
+    conhecimentoController.obteranking(req, res);
+});
 module.exports = router;

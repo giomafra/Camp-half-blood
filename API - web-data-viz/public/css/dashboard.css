@@ -272,6 +272,7 @@
     border: solid 2px black;
     border-radius: 25px;
     display: flex;
+    padding-left: 50px;
     align-items: center;
     justify-content: center;
 }
@@ -283,6 +284,7 @@
     font-family: windlass, sans-serif;
     font-weight: 900;
     text-decoration: underline;
+    align-self: center;
 }
 
 .kpi_personagem {
@@ -307,9 +309,18 @@
 
 #deus_personalidade{
     font-size: 25px;
-    font-family: 'FTY SKORZHEN NCV', sans-serif;
-                                                                                                                                                
-
+    font-family: 'FTY SKORZHEN NCV', sans-serif;   
 }
+
+#b_usuario{
+    font-size: 30px;
+    font-family: 'FTY SKORZHEN NCV', sans-serif;   
+}
+
+#foto_perfil{
+    margin-bottom: 10px;
+}
+
+
 
 

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking</title>
+    <link rel="stylesheet" href="../css/card_do_dia.css">
+    <link href="https://fonts.cdnfonts.com/css/windlass" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/fty-skorzhen-ncv" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="main_container">
+        <div class="barra_lateral">
+            <div class="btn_voltar">
+                <img src="../assets/imgs/Vector (2).png" alt="">
+            </div>
+            <div id="foto_perfil" class="perfil"></div>
+            <div class="ipt_usuario">
+                <h3 id="b_usuario"></h3>
+            </div>
+            <div class="navegacao">
+                <div class="dados">
+                    <img src="../assets/imgs/dados_icon.png">
+                    <button onclick="window.location.href='dashboard.html'">DADOS</button>
+                </div>
+                <div class="ranking">
+                    <img src="../assets/imgs/trofeu_icon (2).png" alt="">
+                    <button onclick="window.location.href='ranking.html'">RANKING</button>
+                </div>
+                <div class="card_dia">
+                    <img src="../assets/imgs/card_dash.png" alt="">
+                    <button onclick="window.location.href='card.html'">CARD DO DIA</button>
+                </div>
+                <div class="conta">
+                    <img src="../assets/imgs/configuracoes-removebg-preview.png" alt="">
+                    <button onclick="location.href='config.html'">MUDAR FOTO DE PERFIL</button>
+                </div>
+            </div>
+        </div>
+        <div class="main_areas">
+            <div class="campos_graficos">
+                <div class="capa_card" id="capa_card">
+                    <button onclick="ver()" id="botao_ver_card" class="botao_ver_card">Ver card</button>
+                </div>
+                <div class="campo1" id="campo1" style="display: none;">
+                    <div class="estilo_card">
+                        <div class="imagem_hist" id="imagem_hist"></div>
+                        <h1 id="titulo_historia"></h1>
+                        <p id="historia"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // Declaração e atualização do nome do usuário
+    b_usuario.innerHTML = `${sessionStorage.NOME_USUARIO}`
+
+    if(sessionStorage.PERSONEGEM == 1){
+        foto_perfil.innerHTML = `<img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/percy_perfil.png" alt="">`
+    }
+    if(sessionStorage.PERSONEGEM == 2){
+        foto_perfil.innerHTML = `<img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/annabeth_icon.png" alt="">`
+    }
+    if(sessionStorage.PERSONEGEM == 3){
+        foto_perfil.innerHTML = `    <img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/grover_perfil.jpg" alt="">`
+    }
+    if(sessionStorage.PERSONEGEM == 4){
+        foto_perfil.innerHTML = `    <img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/nico_perfil.png" alt="">`
+    }
+    if(sessionStorage.PERSONEGEM == 5){
+        foto_perfil.innerHTML = `    <img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/luke_perfil.jpg" alt="">`
+    }
+
+    var capa = document.getElementById("capa_card");
+    var card = document.getElementById("campo1");
+    var titulo_historia = document.getElementById("titulo_historia");
+    var historia = document.getElementById("historia");
+    var imagem_hist = document.getElementById("imagem_hist");
+
+    // Array de histórias e títulos
+    var historias = [
+        {
+            titulo: "Atena X Poseidon e a disputa por Atenas",
+            texto: `Uma das histórias mais conhecidas de Poseidon envolve sua disputa com Atena pela cidade de Atenas. Ambos queriam ser o patrono da cidade, e para decidir quem seria o deus a ser venerado, os dois deram presentes aos habitantes. Poseidon, em sua tentativa de impressionar os atenienses, golpeou o chão com seu tridente e fez brotar uma fonte de água salgada. Atena, por outro lado, ofereceu uma oliveira, que se mostrou muito mais útil, pois proporcionava alimento, madeira e óleo.<br><br>
+                    Os atenienses, impressionados com o presente prático de Atena, escolheram-na como sua deusa padroeira. Enfurecido, Poseidon fez com que os mares se enfurecessem, causando grandes tempestades e dificuldades para os atenienses.`,
+            imagem: `<img style="border: 4px solid black;width: 100%; height: 100%;" src="../assets/imgs/disputa_atenas.png">`
+        },
+        {
+            titulo: "Nascimento do cavalo Pégasus",
+            texto: `O cavalo alado nasceu do sangue de Medusa, que foi violada por Poseidon. Medusa, antes de ser transformada em uma Górgona, era uma linda sacerdotisa de Atena. Poseidon se apaixonou por ela e, em um ato violento, a desonrou no templo de Atena. Como punição, Atena transformou Medusa em um monstro, com serpentes no lugar dos cabelos e a habilidade de petrificar quem a olhasse diretamente.<br><br>
+                    Quando Perseu decapitou Medusa, seu sangue, que se misturou com o poder divino de Poseidon, gerou Pégaso e seu irmão, Crisaor.`,
+            imagem: `<img style="border: 4px solid black;width: 100%; height: 100%;" src="../assets/imgs/pegasus.jpg">`
+        },
+        {
+            titulo: "Odisseu X Polifemo",
+            texto: `Polifemo era filho de Poseidon com uma ninfa, mas ele não tinha a bondade do pai. Era um monstro selvagem e violento, que habitava uma ilha isolada. Quando Odisseu e seus homens chegaram à ilha, procuraram abrigo na caverna de Polifemo, mas ele os prendeu e começou a devorar alguns dos marinheiros.<br><br>
+                    Odisseu, com sua astúcia, decidiu enganar o ciclope para escapar. Ele e seus homens embriagaram Polifemo e, quando o gigante adormeceu, os heróis o cegaram com um estilete afiado. Polifemo chamou Poseidon para amaldiçoar Odisseu, prolongando sua jornada de volta a Ítaca.`,
+            imagem: `<img style="border: 4px solid black;width: 100%; height: 100%;" src="../assets/imgs/polifemo.jpg">`
+        }
+        // Adicione mais histórias conforme necessário
+    ];
+
+    // Função para exibir a história aleatória
+    function ver() {
+        capa.style.display = 'none';
+        card.style.display = 'flex';
+
+        // Selecionar um índice aleatório
+        var randomIndex = Math.floor(Math.random() * historias.length);
+
+        // Atualizar o conteúdo com a história aleatória
+        var historiaAleatoria = historias[randomIndex];
+        titulo_historia.innerHTML = historiaAleatoria.titulo;
+        historia.innerHTML = historiaAleatoria.texto;
+        imagem_hist.innerHTML = historiaAleatoria.imagem;
+
+        console.log(`História exibida: ${historiaAleatoria.titulo}`);
+    }
+</script>
+</html>

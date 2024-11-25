@@ -16,26 +16,26 @@
             <div class="btn_voltar">
                 <img src="../assets/imgs/Vector (2).png" alt="">
             </div>
-            <div class="perfil"></div>
+            <div id="foto_perfil" class="perfil"></div>
             <div class="ipt_usuario">
-                <h3 id="b_usuario">Nome</h3>
+                <h3 id="b_usuario"></h3>
             </div>
             <div class="navegacao">
                 <div class="dados">
                     <img src="../assets/imgs/dados_icon.png">
-                    <button>DADOS</button>
+                    <button onclick="window.location.href='dashboard.html'">DADOS</button>
                 </div>
                 <div class="ranking">
                     <img src="../assets/imgs/trofeu_icon (2).png" alt="">
-                    <button onclick="location.href='ranking.html'">RANKING</button>
+                    <button onclick="window.location.href='ranking.html'">RANKING</button>
                 </div>
                 <div class="card_dia">
                     <img src="../assets/imgs/card_dash.png" alt="">
-                    <button>CARD DO DIA</button>
+                    <button onclick="window.location.href='card.html'">CARD DO DIA</button>
                 </div>
                 <div class="conta">
                     <img src="../assets/imgs/configuracoes-removebg-preview.png" alt="">
-                    <button>CONFIGURAÇÕES DA CONTA</button>
+                    <button onclick="location.href='config.html'">MUDAR FOTO DE PERFIL</button>
                 </div>
             </div>
         </div>
@@ -70,6 +70,23 @@
 
 <script>
     b_usuario.innerHTML = `${sessionStorage.NOME_USUARIO}`
+
+    if(sessionStorage.PERSONEGEM == 1){
+        foto_perfil.innerHTML = `<img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/percy_perfil.png" alt="">`
+    }
+    if(sessionStorage.PERSONEGEM == 2){
+        foto_perfil.innerHTML = `<img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/annabeth_icon.png" alt="">`
+    }
+    if(sessionStorage.PERSONEGEM == 3){
+        foto_perfil.innerHTML = `    <img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/grover_perfil.jpg" alt="">`
+    }
+    if(sessionStorage.PERSONEGEM == 4){
+        foto_perfil.innerHTML = `    <img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/nico_perfil.png" alt="">`
+    }
+    if(sessionStorage.PERSONEGEM == 5){
+        foto_perfil.innerHTML = `    <img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/luke_perfil.jpg" alt="">`
+    }
+
 
     function obterDados() {
         // Obter dados para o gráfico de linha
@@ -141,6 +158,8 @@
                 }
             })
             .catch(error => console.error(`Erro na obtenção dos dados de personalidade: ${error.message}`));
+
+            
     }
 
     function formatarData(data){

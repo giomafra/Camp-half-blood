@@ -6,49 +6,77 @@
     <title>Ranking</title>
     <link rel="stylesheet" href="../css/ranking.css">
     <link href="https://fonts.cdnfonts.com/css/windlass" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/fty-skorzhen-ncv" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body  onload="obterDados()">
+<body onload="obterDados()">
     <div class="main_container">
         <div class="barra_lateral">
             <div class="btn_voltar">
                 <img src="../assets/imgs/Vector (2).png" alt="">
             </div>
-            <div class="perfil">
-            </div>
+            <div id="foto_perfil" class="perfil"></div>
             <div class="ipt_usuario">
-                <h3>Nome</h3>
+                <h3 id="b_usuario"></h3>
             </div>
-                <div class="navegacao">
-             <div class="dados">
+            <div class="navegacao">
+                <div class="dados">
                     <img src="../assets/imgs/dados_icon.png">
-                    <button>DADOS</button>
+                    <button onclick="window.location.href='dashboard.html'">DADOS</button>
                 </div>
                 <div class="ranking">
                     <img src="../assets/imgs/trofeu_icon (2).png" alt="">
-                    <button onclick="location.href='ranking.html'">RANKING</button>
+                    <button onclick="window.location.href='ranking.html'">RANKING</button>
                 </div>
-             <div class="card_dia">
+                <div class="card_dia">
                     <img src="../assets/imgs/card_dash.png" alt="">
-                    <button>CARD DO DIA</button>
+                    <button onclick="window.location.href='card.html'">CARD DO DIA</button>
                 </div>
                 <div class="conta">
                     <img src="../assets/imgs/configuracoes-removebg-preview.png" alt="">
-                    <button>CONFIGURAÇÕES DA CONTA</button>
+                    <button onclick="location.href='config.html'">MUDAR FOTO DE PERFIL</button>
                 </div>
-        </div>
-
-
+            </div>
         </div>
         <div class="main_areas">
             <div class="campos_graficos">
                 <div class="campo1">
-                    <div class="segundo"></div>
-                    <div class="primeiro"></div>
-                    <div class="terceiro"></div>
-                </div>
-            </div>
-        </div>
+                    <div class="podium-container">
+                        <!-- Troféu -->
+                        <!-- 2º lugar -->
+                        <div class="podium podium-2">
+                            <span style="font-size: 50px;">2º</span>
+                        </div>
+                        <!-- 1º lugar -->
+                        <div class="podium podium-1">
+                            <span style="font-size: 50px;">1º</span>
+                        </div>
+                        <!-- 3º lugar -->
+                        <div class="podium podium-3">
+                            <span style="font-size: 50px;">3º</span>
+                        </div>
+                    </div>
     </div>
 </body>
 </html>
+<script>
+    b_usuario.innerHTML = `${sessionStorage.NOME_USUARIO}`
+
+    if(sessionStorage.PERSONEGEM == 1){
+        foto_perfil.innerHTML = `<img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/percy_perfil.png" alt="">`
+    }
+    if(sessionStorage.PERSONEGEM == 2){
+        foto_perfil.innerHTML = `<img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/annabeth_icon.png" alt="">`
+    }
+    if(sessionStorage.PERSONEGEM == 3){
+        foto_perfil.innerHTML = `    <img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/grover_perfil.jpg" alt="">`
+    }
+    if(sessionStorage.PERSONEGEM == 4){
+        foto_perfil.innerHTML = `    <img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/nico_perfil.png" alt="">`
+    }
+    if(sessionStorage.PERSONEGEM == 5){
+        foto_perfil.innerHTML = `    <img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/luke_perfil.jpg" alt="">`
+    }
+
+</script>
