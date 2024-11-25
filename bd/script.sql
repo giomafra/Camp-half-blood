@@ -1,4 +1,4 @@
-CREATE DATABASE CampHalfBlood;
+DROP DATABASE CampHalfBlood;
 USE CampHalfBlood;
 
 CREATE TABLE usuario(
@@ -11,7 +11,9 @@ personagem INT);
 
 CREATE TABLE quizz_conhecimento(
 idQuiz_conhec INT PRIMARY KEY AUTO_INCREMENT,
-pontuacao int,
+qtdQuestoes int,
+qtdAcertos INT,
+qtdErros INT,
 fkUsuario INT,
 CONSTRAINT fkConhecUsuario FOREIGN KEY (fkUsuario)
 REFERENCES usuario(idUsuario)
@@ -25,7 +27,35 @@ fkUsuario INT,
 CONSTRAINT fkPersonUsuario FOREIGN KEY (fkUsuario)
 REFERENCES usuario(idUsuario)
 );
-
 SELECT * FROM quizz_personalidade;
+SELECT * FROM quizz_conhecimento;
 
 
+ SELECT
+        p.personagem
+        FROM quizz_personalidade as p
+        JOIN
+        usuario 
+        on
+        fkUsuario = idUsuario
+        WHERE fkUsuario;
+
+   SELECT
+        c.qtdAcertos,
+        c.data_hora
+        FROM quizz_conhecimento as c
+        JOIN
+        usuario
+        on
+        fkUsuario = idUsuario
+        WHERE fkUsuario;
+
+
+    SELECT 
+        u.nome,
+        c.qtdAcertos
+        FROM
+        usuario AS u
+        JOIN
+        quizz_conhecimento as c
+        ON fkUsuario = idUsuario;
