@@ -1,0 +1,94 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('../assets/imgs/background_inicial.png');
+    background-size: cover;  /* A imagem cobrirá toda a área da tela */
+    background-position: center;  /* A imagem ficará centralizada */
+    background-attachment: fixed; /* A imagem ficará fixa ao rolar a página */
+}
+
+.main-title {
+    text-align: center;
+    font-size: 36px;
+    margin: 20px 0;
+    font-family: 'Georgia', serif;
+}
+
+.section {
+    background-color: #185F65;
+    color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    overflow: hidden; /* Evita que o conteúdo ultrapasse */
+}
+
+.section h2 {
+    font-family: 'Georgia', serif;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.section p {
+    font-size: 18px;
+    text-align: justify;
+}
+
+.section .content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Torna responsivo */
+}
+
+.section .content img {
+    width: 250px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.section .content img:hover {
+    transform: scale(1.05); /* Efeito de zoom ao passar o mouse na imagem */
+}
+
+.section .content .text {
+    flex: 1;
+    font-size: 30px;
+}
+
+.section .content.reverse {
+    flex-direction: row-reverse; /* Inverte a ordem: imagem à direita */
+}
+
+.section p {
+    font-size: 30px; /* Aumentei o tamanho da fonte */
+    text-align: justify; /* Alinha o texto de forma justificada */
+    line-height: 1.8; /* Aumenta o espaçamento entre as linhas para uma leitura mais confortável */
+    margin-bottom: 15px; /* Dá um espaçamento entre os parágrafos */
+    color: #f0f0f0; /* Cor mais suave para os parágrafos */
+    letter-spacing: 0.5px; /* Espaçamento entre as letras */
+}
+
+.section p:first-child {
+    margin-top: 0; /* Remove a margem superior do primeiro parágrafo */
+}
+
+.section p:last-child {
+    margin-bottom: 0; /* Remove a margem inferior do último parágrafo */
+}
+
+/* Estilização do parágrafo quando está em destaque */
+.section p.highlight {
+    background-color: rgba(255, 255, 255, 0.2); /* Fundo levemente transparente */
+    padding: 10px 15px; /* Adiciona um pouco de padding */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-weight: bold; /* Deixa o texto mais destacado */
+    color: #00bfb2; /* Cor de destaque */
+}
+
