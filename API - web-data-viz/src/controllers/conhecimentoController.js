@@ -107,13 +107,12 @@ function obteracertos(req, res) {
     function obteranking(req, res) {
         // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     
-        var ID_USUARIO = req.params.IDUSUARIO;
     
     
         // Faça as validações dos valores
     
             // Passe os valores como parâmetro e vá para o arquivo personalidadeModel.js
-            conhecimentoModel.obteranking(ID_USUARIO)
+            conhecimentoModel.obteranking()
                 .then(
                     function (resultado) {
                         res.json(resultado);

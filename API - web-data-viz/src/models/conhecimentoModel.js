@@ -35,20 +35,24 @@ function obteracertos(ID_USUARIO) {
     return database.executar(instrucaoSql);
 }
 
-function obteranking(ID_USUARIO) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", ID_USUARIO);
+function obteranking() {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
 
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        SELECT 
+	    SELECT 
+        u.personagem,
         u.nome,
-        c.qtdAcertos
+        SUM(c.qtdAcertos) AS 'soma'
         FROM
         usuario AS u
         JOIN
         quizz_conhecimento as c
-        ON fkUsuario = idUsuario;
+        ON fkUsuario = idUsuario
+        group by idUsuario
+        ORDER BY soma DESC
+        LIMIT 3;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

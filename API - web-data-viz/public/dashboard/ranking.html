@@ -10,7 +10,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body onload="obterDados()">
+<body>
     <div class="main_container">
         <div class="barra_lateral">
             <div class="btn_voltar">
@@ -43,18 +43,29 @@
             <div class="campos_graficos">
                 <div class="campo1">
                     <div class="podium-container">
-                        <!-- Troféu -->
-                        <!-- 2º lugar -->
-                        <div class="podium podium-2">
-                            <span style="font-size: 50px;">2º</span>
+                        <div class="placares">
+                            <div  class="foto_usuario" id="foto_segundo"></div>
+                            <p id="podium_segundo"></p>
+                            <p id="soma_segundo"></p>
+                            <div class="podium podium-2">
+                                <span style="font-size: 50px;">2º</span>
+                            </div>
                         </div>
-                        <!-- 1º lugar -->
+                        <div class="placares">
+                            <div class="foto_usuario" id="foto_primeiro"></div>
+                            <p id="podium_primeiro"></p>
+                            <p id="soma_primeiro"></p>
                         <div class="podium podium-1">
                             <span style="font-size: 50px;">1º</span>
                         </div>
-                        <!-- 3º lugar -->
-                        <div class="podium podium-3">
-                            <span style="font-size: 50px;">3º</span>
+                        </div>
+                        <div class="placares">
+                            <div class="foto_usuario" id="foto_terceiro"></div>
+                            <p id="podium_terceiro"></p>
+                            <p id="soma_terceiro"></p>
+                            <div class="podium podium-3"> 
+                                <span style="font-size: 50px;">3º</span>
+                            </div>
                         </div>
                     </div>
     </div>
@@ -77,6 +88,86 @@
     }
     if(sessionStorage.PERSONEGEM == 5){
         foto_perfil.innerHTML = `    <img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/luke_perfil.jpg" alt="">`
+    }
+
+    fetch(`/conhecimento/obteranking`, { cache: 'no-store' })
+            .then(response => {
+                if (response.ok) {
+                    response.json().then(resposta => {
+                        exibirRanking(resposta)
+                        console.log(resposta)
+                    });
+                } else {
+                    console.error('Erro na API de dados para gráfico de linha');
+                }
+            })
+            .catch(error => console.error(`Erro na obtenção dos dados para gráfico de linha: ${error.message}`));
+
+    
+    function exibirRanking(dados) {
+        var lista_nome = []
+        var lista_soma = []
+        var lista_fotos = []
+        for( var index = 0; index < dados.length; index++){
+            var nome_recolhido = dados[index].nome
+            var soma_recolhida = dados[index].soma 
+            var personagem_foto = dados[index].personagem 
+
+            lista_nome.push(nome_recolhido)
+            lista_soma.push(soma_recolhida)
+            lista_fotos.push(personagem_foto)
+
+        }
+    var primeiro_nome = lista_nome[0]
+    podium_primeiro.innerHTML = primeiro_nome
+
+    var primeiro_soma = lista_soma[0]
+    soma_primeiro.innerHTML = primeiro_soma
+
+    var segundo_nome = lista_nome[1]
+    podium_segundo.innerHTML = segundo_nome
+
+    var segundo_soma = lista_soma[1]
+    soma_segundo.innerHTML = segundo_soma
+
+    var terceiro_nome = lista_nome[2]
+    podium_terceiro.innerHTML = terceiro_nome
+
+    var terceiro_soma = lista_soma[2]
+    soma_terceiro.innerHTML = terceiro_soma
+
+    foto_primeiro.style.backgroundImage = exibirFoto(lista_fotos[0])
+    foto_segundo.style.backgroundImage = exibirFoto(lista_fotos[1])
+    foto_terceiro.style.backgroundImage = exibirFoto(lista_fotos[2])
+
+    }
+
+    function exibirFoto(numero_foto){
+        
+    if(numero_foto == 1){
+        return "url(../assets/imgs/percy_perfil.png)"
+        
+    }
+    if(numero_foto == 2){
+        return "url(../assets/imgs/annabeth_icon.png)"
+
+        
+
+    }
+    if(numero_foto == 3){
+        return "url(../assets/imgs/grover_perfil.jpg)"
+
+    }
+    if(numero_foto == 4){
+        return "url(../assets/imgs/nico_perfil.png)"
+
+    }
+    if(numero_foto == 5){
+
+        return "url(../assets/imgs/luke_perfil.jpg)"
+
+    }   
+
     }
 
 </script>

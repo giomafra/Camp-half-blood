@@ -84,7 +84,7 @@ function tracosPersonalidade(req, res) {
 
     personalidadeModel.tracosPersonalidade(ID_USUARIO).then(function(result) {
         if (result.length > 0) {
-            res.status(200).json(result[0].personagem); // Envia apenas o 'personagem' para o frontend
+            res.status(200).json(result[result.length - 1].personagem); // Envia apenas o 'personagem' para o frontend
         } else {
             res.status(404).json({ mensagem: "Nenhum dado encontrado" });
         }

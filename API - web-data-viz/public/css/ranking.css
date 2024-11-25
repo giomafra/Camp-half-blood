@@ -246,6 +246,7 @@
 
 
 .podium-container {
+
     display: flex;
     justify-content: space-evenly; /* Ajusta o espaçamento entre as colunas */
     align-items: flex-end;
@@ -264,6 +265,7 @@
     text-align: center;
     position: relative;
     border: 2px solid black;
+    margin-top: 10px;
 }
 
 /* Estilos dos números */
@@ -292,4 +294,29 @@
     background-color: #197981; /* Verde */
     width: 250px; /* Largura aumentada */
     height: 400px; /* Altura ajustada */
+}
+
+.placares{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.placares p{
+    font-size: 23px;
+}
+#foto_segundo, #foto_primeiro, #foto_terceiro{
+    width: 150px;
+    height: 150px;
+    background-color: black;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    outline: 4px solid black;
+    
+
+}
+
+.foto_usuario{
+    background-size: cover;
 }
