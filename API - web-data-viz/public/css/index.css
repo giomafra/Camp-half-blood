@@ -60,7 +60,7 @@ nav {
     border-style: groove;
     border-radius: 15px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 16px;            
     transition: background-color 0.3s;
     width: auto; /* Evita que estique */
 }
@@ -200,14 +200,12 @@ nav {
 
 .saga {
     width: 100%;
-    height: 100vh;
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
+    flex-direction: column;
+    gap: 50px;
 }
 
 .main_container {
-    margin-top: 60px;
     display: flex;
     flex-direction: column; /* Para o título ficar no topo */
     padding: 20px;
@@ -287,15 +285,11 @@ b {
     gap: 10px;
 }
 
-.saga, .autor {
-    display: block; /* Assegura que as divs não fiquem lado a lado */
-    width: 100%; /* Garantir que ocupem toda a largura */
-}
+
 
 
 .autor {
     width: 100%;
-    height: 100vh;
     display: flex;
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center; /* Centraliza verticalmente */
@@ -303,10 +297,10 @@ b {
 
 .main_container_autor {
     display: flex;
-    flex-direction: column; /* Para o título ficar no topo */
     padding: 20px;
     color: white;
-    height: 90%;
+    height: 83%;
+    flex-direction: column;
     text-align: justify;
     width: 100%; /* Ajusta a largura do container */
     background-color: #24867f;
@@ -319,26 +313,14 @@ b {
     font-size: 60px;
     text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     width: 100%;
-    margin-top: 0;
+    margin-bottom: 10px;
 }
 
 .content_autor {
     display: flex; /* Alinha o texto e a imagem lado a lado */
-    justify-content: flex-start; /* Flex-start para manter o conteúdo alinhado à esquerda */
-    gap: 20px; /* Espaçamento entre o texto e a imagem */
+    justify-content: space-between; /* Flex-start para manter o conteúdo alinhado à esquerda */
     width: 100%;
     height: 100%;
-    margin-top: 20px;
-}
-
-.Text_autor {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    width: 70%; /* O texto ocupa 70% da largura */
-    height: 85%;
-    margin-left: 20px;
 }
 
 .autor-image-container {
@@ -350,16 +332,19 @@ b {
 }
 
 .autor-image {
-    max-width: 100%;
-    height: 50%;
+    height: 60%;
     margin-top: 50px;
     border-radius: 20px;
     border: 4px solid black;
+    
+
 
 }
 
+
 .Text_autor p{
-    font-size: 20px;
+
+    font-size: 21px;
     text-align: justify;
     font-family: 'Texturina';
     font-weight: bold;
@@ -369,16 +354,40 @@ b {
 
 }
 
-b {
-    font-weight: bold; /* Garantindo que o texto dentro da tag <b> será em negrito */
-    color: #000000; /* Exemplo de cor dourada para o texto em negrito */
-    text-decoration: underline;
+.img_autor {
+    width: 20%;
 }
 
+.img_autor > img {
+    width: 100%;
+    justify-self: center;
+}
 
+.library{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
+.prateleira{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid black;
+}
 
+.livros{
+    display: flex;
+    flex-direction: row;
+}
 
+.livros img{
+    width: 200px;
+    padding: 20px;
+}
 
 
 
