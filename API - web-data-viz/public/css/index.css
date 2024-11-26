@@ -150,3 +150,236 @@ nav {
     color: #00bfb2; /* Cor de destaque */
 }
 
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-logo img {
+    max-width: 50px;
+    margin-bottom: 20px;
+}
+
+.footer-copyrigth {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.footer-copyrigth a {
+    text-decoration: none;
+    color: #FFC0CB;
+}
+
+.footer-copyrigth span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.footer-social a {
+    margin: 0 10px;
+    display: inline-block;
+}
+
+.footer-social img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s;
+}
+
+.footer-social img:hover {
+    transform: scale(1.1);
+}
+
+.saga {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+.main_container {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column; /* Para o título ficar no topo */
+    padding: 20px;
+    color: white;
+    height: 70%;
+    text-align: justify;
+    width: 100%; /* Ajusta a largura do container */
+    background-color: #185F65;
+}
+
+.main_container h1 {
+    color: black;
+    text-align: center;
+    font-family: 'Windlass', sans-serif;
+    font-size: 60px;
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin-top: 0;
+}
+
+.content {
+    display: flex; /* Alinha o texto e a imagem lado a lado */
+    justify-content: flex-start; /* Flex-start para manter o conteúdo alinhado à esquerda */
+    gap: 20px; /* Espaçamento entre o texto e a imagem */
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+}
+
+.Text_saga {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    width: 70%; /* O texto ocupa 70% da largura */
+    height: 85%;
+    margin-left: 20px;
+}
+
+.saga-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%; /* A imagem ocupa 30% da largura */
+    height: 85%;
+}
+
+.saga-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 50px;
+    border-radius: 20px;
+    border: 4px solid black;
+
+}
+
+.Text_saga p{
+    font-size: 20px;
+    text-align: justify;
+    font-family: 'Texturina';
+    font-weight: bold;
+    color: white;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
+
+
+}
+
+b {
+    font-weight: bold; /* Garantindo que o texto dentro da tag <b> será em negrito */
+    color: #000000; /* Exemplo de cor dourada para o texto em negrito */
+    text-decoration: underline;
+}
+
+.paginas {
+    display: flex;
+    flex-direction: column; /* Garante que as divs fiquem empilhadas */
+    gap: 10px;
+}
+
+.saga, .autor {
+    display: block; /* Assegura que as divs não fiquem lado a lado */
+    width: 100%; /* Garantir que ocupem toda a largura */
+}
+
+
+.autor {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+.main_container_autor {
+    display: flex;
+    flex-direction: column; /* Para o título ficar no topo */
+    padding: 20px;
+    color: white;
+    height: 90%;
+    text-align: justify;
+    width: 100%; /* Ajusta a largura do container */
+    background-color: #24867f;
+}
+
+.main_container_autor h1 {
+    color: black;
+    text-align: center;
+    font-family: 'Windlass', sans-serif;
+    font-size: 60px;
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin-top: 0;
+}
+
+.content_autor {
+    display: flex; /* Alinha o texto e a imagem lado a lado */
+    justify-content: flex-start; /* Flex-start para manter o conteúdo alinhado à esquerda */
+    gap: 20px; /* Espaçamento entre o texto e a imagem */
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+}
+
+.Text_autor {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    width: 70%; /* O texto ocupa 70% da largura */
+    height: 85%;
+    margin-left: 20px;
+}
+
+.autor-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%; /* A imagem ocupa 30% da largura */
+    height: 85%;
+}
+
+.autor-image {
+    max-width: 100%;
+    height: 50%;
+    margin-top: 50px;
+    border-radius: 20px;
+    border: 4px solid black;
+
+}
+
+.Text_autor p{
+    font-size: 20px;
+    text-align: justify;
+    font-family: 'Texturina';
+    font-weight: bold;
+    color: white;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
+
+
+}
+
+b {
+    font-weight: bold; /* Garantindo que o texto dentro da tag <b> será em negrito */
+    color: #000000; /* Exemplo de cor dourada para o texto em negrito */
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+

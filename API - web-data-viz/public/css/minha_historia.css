@@ -11,11 +11,45 @@ body {
     background-attachment: fixed; /* A imagem ficará fixa ao rolar a página */
 }
 
+.nav_list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap; /* Permite ajuste em telas menores */
+}
+  
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Windlass', sans-serif;
+    background-color: #FF6200;
+    color: white;
+    font-size: 20px;
+    padding: 15px 20px;
+    width: 100%;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+}
+
+.nav_list > li {
+    margin-right: 10px; 
+}
+
+.nav_list > li > a {
+    padding-left: 20px;
+    color: white;
+    text-decoration: none;
+}
+
 .main-title {
     text-align: center;
     font-size: 36px;
     margin: 20px 0;
-    font-family: 'Georgia', serif;
+    font-family: windlass, sans-serif;
+    font-weight: bold;
 }
 
 .section {
@@ -28,9 +62,10 @@ body {
 }
 
 .section h2 {
-    font-family: 'Georgia', serif;
+    font-family: windlass, sans-serif;
     font-size: 28px;
     margin-bottom: 10px;
+    text-shadow: 2px 4px 4px black;
 }
 
 .section p {
