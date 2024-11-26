@@ -188,7 +188,9 @@
             hora += data[i]
         }
     }
-    return dataFormatada = `${dia}/${mes}/${ano} ${hora}:${minutos}`
+    var horaForm = Number(hora-2)
+
+    return dataFormatada = `${dia}/${mes}/${ano} ${horaForm}:${minutos}`
     
 }
 function plotarGraficoLinha(dados){
