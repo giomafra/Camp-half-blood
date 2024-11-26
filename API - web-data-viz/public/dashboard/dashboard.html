@@ -118,7 +118,6 @@
 
                         console.log(`Dados recebidos para traços de personalidade: ${resposta}`);
 
-                        // Criar os dados fictícios baseados na resposta
                         var dadosPie;
                         if(resposta === 'Poseidon') {
                             dadosPie = {
@@ -152,7 +151,6 @@
                             };
                         }
 
-                        // Chamar função para plotar o gráfico de pizza com os dados
                         plotarGraficoPizza(dadosPie);
                     });
                 } else {
