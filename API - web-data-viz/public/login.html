@@ -8,7 +8,14 @@
     <link href="https://fonts.cdnfonts.com/css/windlass" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/border-animation.css">
-
+    <style>
+        #div_mensagem {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 10px;
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -32,6 +39,7 @@
                 </div>
 
                 <button class="entrar" onclick="entrar()">Entrar</button>
+                <div id="div_mensagem"></div>
                 
             </div>
         </div>
@@ -41,54 +49,128 @@
 </html>
 
 <script>
+ let correto = true;  
+
+
     function entrar(){
-        var email = input_email.value
-        var senha = input_senha.value
+        correto = true;  
 
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: email,
-                senhaServer: senha
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
+validarEmail();
+validarSenha();
 
-            if (resposta.ok) {
-                console.log(resposta);
+if (correto) {
+    alert("Usuário autenticado com sucesso!");
+} else {
+    alert("Corrija os campos destacados");
+}
 
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.PERSONEGEM =json.personagem;
-                    
-                    setTimeout(function () {
-                        window.location = "./dashboard/dashboard.html";
-                    }, 1000); 
+var senha = document.getElementById('input_senha').value;
+var email = document.getElementById('input_email').value;
+  
 
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
+fetch("/usuarios/autenticar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            emailServer: email,
+            senhaServer: senha
         })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!");
 
-        return false;
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log("Resposta JSON:", json);
+                sessionStorage.EMAIL_USUARIO = json.email;
+                sessionStorage.NOME_USUARIO = json.nome;
+                sessionStorage.ID_USUARIO = json.id;
+                sessionStorage.PERSONAGEM = json.personagem;
+                
+                // Log para verificar os dados da sessão
+                console.log("Dados armazenados na sessão:", sessionStorage);
+
+                setTimeout(function () {
+                    window.location = "./dashboard/dashboard.html";
+                }, 1000); 
+
+            });
+
+        } else {
+            console.log("Houve um erro ao tentar realizar o login!");
+
+            resposta.text().then(texto => {
+                console.error(texto);
+            });
+        }
+
+    }).catch(function (erro) {
+        console.log("Erro no fetch:", erro);
+    });
+
+    return false;
+}
+
+function validarEmail() {
+    var email = document.getElementById('input_email').value.toLowerCase();
+    var mensagem = "";
+
+    var comeca_ponto = email.startsWith('.');
+    var ponto_ponto = email.includes('..');
+    var arroba_ponto = email.includes('@.');
+    var termina_com = email.endsWith('.com');
+    var termina_br = email.endsWith('.br');
+    var termina_school = email.endsWith('.school');
+    var possui_arroba = email.includes('@');
+    var possui_barra = email.includes('\\');
+    var possui_barra_direita = email.includes('/');
+    var possui_aspas = email.includes('"');
+
+    if (ponto_ponto || arroba_ponto || possui_barra || possui_barra_direita || possui_aspas) {
+        document.getElementById('input_email').style.borderColor = "red";
+        correto = false;
+        mensagem += "O email contém caracteres inválidos. Corrija e tente novamente.<br>";
+    } else if (comeca_ponto) {
+        document.getElementById('input_email').style.borderColor = "red";
+        correto = false;
+        mensagem += "O email não pode começar com ponto.<br>";
+    } else if (!possui_arroba || (!termina_com && !termina_br && !termina_school)) {
+        document.getElementById('input_email').style.borderColor = "red";
+        correto = false;
+        mensagem += "O email deve conter '@' e terminar com '.com', '.br' ou '.school'.<br>";
+    } else {
+        document.getElementById('input_email').style.borderColor = "green";
+        mensagem += "<span style='color: green;'>Email válido</span>";
+    }
+    document.getElementById('div_mensagem').innerHTML = mensagem;
+}
+
+function validarSenha() {
+    var senha = document.getElementById('input_senha').value;
+    var mensagem = "";
+
+    var tem_especial = /[!@#$%&]/.test(senha);
+    var possui_numero = /\d/.test(senha);
+    var temMaiuscula = /[A-Z]/.test(senha);
+    var temMinuscula = /[a-z]/.test(senha);
+
+    if (senha.length < 6) {
+        document.getElementById('input_senha').style.borderColor = "red";
+        mensagem += "A senha precisa de ao menos 6 caracteres.<br><b>Atualmente, possui " + senha.length + " caracteres.</b><br>";
+        correto = false;
+    } else if (tem_especial && possui_numero && temMaiuscula && temMinuscula) {
+        document.getElementById('input_senha').style.borderColor = "green";
+        mensagem += "<span style='color: green;'>Senha válida</span>";
+    } else {
+        document.getElementById('input_senha').style.borderColor = "red";
+        mensagem += "A senha precisa ter:<br>- Ao menos um caractere especial (! @ # $ % &)<br>- Ao menos uma letra maiúscula<br>- Ao menos um número<br>- Ao menos uma letra minúscula";
+        correto = false;
     }
 
+    document.getElementById('div_mensagem').innerHTML = mensagem;
+}
 
 </script>

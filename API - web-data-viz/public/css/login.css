@@ -173,3 +173,9 @@ select option {
     justify-content: center; 
     height: 85%;           
 }
+
+#mensagem {
+    display: block; /* Garante que a div seja exibida */
+    font-size: 14px;
+    margin-top: 10px;
+}

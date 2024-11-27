@@ -19,7 +19,7 @@
                 </a>
             </div>
             <div id="btn_dash" class="btn_dash">
-                <button onclick="window.location.href='dashboard.html'" class="login">Dashboard</button>
+                <button onclick="window.location.href='../dashboard.html'" class="login">Dashboard</button>
         </nav>
     </header>
     <div class="main-content">
@@ -225,10 +225,10 @@
                         //   cardErro.style.display = "block";
 
                         //   mensagem_erro.innerHTML =
-                        alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+                        alert("Quiz realizado com sucesso! Redirecionando para tela da dashboard...");
 
                         setTimeout(() => {
-                            window.location = "login.html";
+                            window.location.href='dashboard.html';
                         }, "2000");
 
                         limparFormulario();
