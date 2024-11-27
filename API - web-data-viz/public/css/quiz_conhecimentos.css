@@ -233,3 +233,64 @@ nav {
     background-color: #277a82e7;
     font-size: 70px;
 }
+
+.btn_dash button {
+    background-color: #00BFB2;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: 2px solid black;
+    border-style: groove;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;            
+    transition: background-color 0.3s;
+    width: auto; /* Evita que estique */
+}
+
+.btn_dash button:hover {
+    background-color: #185F65;
+}
+
+.btn_dash button {
+    background-color: #00BFB2;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: 2px solid black;
+    border-style: groove;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;            
+    transition: background-color 0.3s;
+    width: auto; /* Evita que estique */
+}
+
+.btn_dash button:hover {
+    background-color: #185F65;
+}
+
+.btn_dash {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap; /* Permite empilhar botões em telas menores */
+}
+
+.btn_dash button {
+    background-color: #00BFB2;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: 2px solid black;
+    border-style: groove;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;            
+    transition: background-color 0.3s;
+    width: auto; /* Evita que estique */
+}
+
+.btn_dash button:hover {
+    background-color: #185F65;
+}

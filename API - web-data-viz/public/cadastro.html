@@ -8,6 +8,14 @@
     <link href="https://fonts.cdnfonts.com/css/windlass" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/border-animation.css">
+    <style>
+      #div_mensagem {
+          font-size: 20px;
+          text-align: center;
+          margin-bottom: 10px;
+          color: red;
+      }
+  </style>
 </head>
 <body>
     <div class="container">
@@ -23,19 +31,19 @@
                 <div class="formulario">
                     <div class="input-group">
                         <i class="fas fa-user"></i>
-                        <input id="input_nome" placeholder="Nome" type="text" />
+                        <input oninput="validarNome()" id="input_nome" placeholder="Nome" type="text" />
                     </div>
                     <div class="input-group">
                         <i class="fas fa-envelope"></i>
-                        <input id="input_email" placeholder="E-mail" type="text" />
+                        <input oninput="validarEmail()" id="input_email" placeholder="E-mail" type="text" />
                     </div>
                     <div class="input-group">
                         <i class="fas fa-lock"></i>
-                        <input id="input_senha" placeholder="Senha" type="password" />
+                        <input oninput="validarSenha()" id="input_senha" placeholder="Senha" type="password" />
                     </div>
                     <div class="input-group">
                         <i class="fas fa-unlock"></i>
-                        <input id="input_senha_confirmacao" placeholder="Confirmação de senha" type="password" />
+                        <input oninput="validarConfirmacao()" id="input_senha_confirmacao" placeholder="Confirmação de senha" type="password" />
                     </div>
                     <span>Selecione um personagem :</span>
                     <select class="formulario" id="input_personagem">
@@ -46,6 +54,8 @@
                         <option value="5">Luke Castellan</option>
                     </select>
                     <button class="cadastrar" onclick="cadastrar()">Cadastrar</button>
+                    <div id="div_mensagem"></div>
+
                 </div>
             </div>
         </div>
@@ -55,56 +65,166 @@
 
 
 <script>
-    function cadastrar(){
-        var nome = input_nome.value
-        var email = input_email.value
-        var senha = input_senha.value
-        var confirmacao = input_senha_confirmacao.value
-        var personagem = input_personagem.value
+ let correto = true;  // Global variable for tracking validation state
 
-              // Enviando o valor da nova input
-      fetch("/usuarios/cadastrar", {
+function cadastrar() {
+    correto = true;  // Reset validation state at the start of the function
+
+    // Call validation functions
+    validarNome();
+    validarEmail();
+    validarSenha();
+    validarConfirmacao();
+
+    if (correto) {
+        alert("Usuário cadastrado com sucesso!");
+    } else {
+        alert("Corrija os campos destacados");
+    }
+
+    var nome = document.getElementById('input_nome').value;
+    var email = document.getElementById('input_email').value;
+    var senha = document.getElementById('input_senha').value;
+    var confirmacao = document.getElementById('input_senha_confirmacao').value;
+    var personagem = document.getElementById('input_personagem').value;
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          // crie um atributo que recebe o valor recuperado aqui
-          // Agora vá para o arquivo routes/usuario.js
-          nomeServer: nome,
-          emailServer: email,
-          senhaServer: senha,
-          confirmacaoServer: confirmacao,
-          personagem: personagem
+            nomeServer: nome,
+            emailServer: email,
+            senhaServer: senha,
+            confirmacaoServer: confirmacao,
+            personagem: personagem
         }),
-      })
-        .then(function (resposta) {
-          console.log("resposta: ", resposta);
-  
-          if (resposta.ok) {
-            //   cardErro.style.display = "block";
-  
-            //   mensagem_erro.innerHTML =
+    })
+    .then(function (resposta) {
+        console.log("resposta: ", resposta);
+        if (resposta.ok) {
             alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
-  
             setTimeout(() => {
-              window.location = "login.html";
-            }, "2000");
-  
+                window.location = "login.html";
+            }, 2000);
             limparFormulario();
-  
-          } else {
+        } else {
             throw "Houve um erro ao tentar realizar o cadastro!";
-          }
-        })
-        .catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-  
-        });
-  
-      return false;
+        }
+    })
+    .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
 }
-    
+
+function validarNome() {
+    var nome = document.getElementById('input_nome').value;
+    var tamanho_nome = nome.length;
+    var mensagem = "";
+
+    var invalidChars = /[0-9]/;
+    if (invalidChars.test(nome)) {
+        document.getElementById('input_nome').style.borderColor = "red";
+        mensagem += "O nome não pode conter números. <b>Por favor, remova os dígitos numéricos.</b><br>";
+        correto = false;
+    } else if (tamanho_nome < 3) {
+        document.getElementById('input_nome').style.borderColor = "red";
+        mensagem += "O nome deve ter pelo menos 3 caracteres. <b>Você digitou " + tamanho_nome + " caracteres.</b><br>";
+        correto = false;
+    } else {
+        document.getElementById('input_nome').style.borderColor = "green";
+        mensagem += "<span style='color: green;'>Nome válido</span>";
+    }
+    document.getElementById('div_mensagem').innerHTML = mensagem;
+}
+
+function validarEmail() {
+    var email = document.getElementById('input_email').value.toLowerCase();
+    var mensagem = "";
+
+    var comeca_ponto = email.startsWith('.');
+    var ponto_ponto = email.includes('..');
+    var arroba_ponto = email.includes('@.');
+    var termina_com = email.endsWith('.com');
+    var termina_br = email.endsWith('.br');
+    var termina_school = email.endsWith('.school');
+    var possui_arroba = email.includes('@');
+    var possui_barra = email.includes('\\');
+    var possui_barra_direita = email.includes('/');
+    var possui_aspas = email.includes('"');
+
+    if (ponto_ponto || arroba_ponto || possui_barra || possui_barra_direita || possui_aspas) {
+        document.getElementById('input_email').style.borderColor = "red";
+        correto = false;
+        mensagem += "O email contém caracteres inválidos. Corrija e tente novamente.<br>";
+    } else if (comeca_ponto) {
+        document.getElementById('input_email').style.borderColor = "red";
+        correto = false;
+        mensagem += "O email não pode começar com ponto.<br>";
+    } else if (!possui_arroba || (!termina_com && !termina_br && !termina_school)) {
+        document.getElementById('input_email').style.borderColor = "red";
+        correto = false;
+        mensagem += "O email deve conter '@' e terminar com '.com', '.br' ou '.school'.<br>";
+    } else {
+        document.getElementById('input_email').style.borderColor = "green";
+        mensagem += "<span style='color: green;'>Email válido</span>";
+    }
+    document.getElementById('div_mensagem').innerHTML = mensagem;
+}
+
+function validarSenha() {
+    var senha = document.getElementById('input_senha').value;
+    var mensagem = "";
+
+    var tem_especial = /[!@#$%&]/.test(senha);
+    var possui_numero = /\d/.test(senha);
+    var temMaiuscula = /[A-Z]/.test(senha);
+    var temMinuscula = /[a-z]/.test(senha);
+
+    if (senha.length < 6) {
+        document.getElementById('input_senha').style.borderColor = "red";
+        mensagem += "A senha precisa de ao menos 6 caracteres.<br><b>Atualmente, possui " + senha.length + " caracteres.</b><br>";
+        correto = false;
+    } else if (tem_especial && possui_numero && temMaiuscula && temMinuscula) {
+        document.getElementById('input_senha').style.borderColor = "green";
+        mensagem += "<span style='color: green;'>Senha válida</span>";
+    } else {
+        document.getElementById('input_senha').style.borderColor = "red";
+        mensagem += "A senha precisa ter:<br>- Ao menos um caractere especial (! @ # $ % &)<br>- Ao menos uma letra maiúscula<br>- Ao menos um número<br>- Ao menos uma letra minúscula";
+        correto = false;
+    }
+
+    document.getElementById('div_mensagem').innerHTML = mensagem;
+}
+
+function validarConfirmacao() {
+    var senha = document.getElementById('input_senha').value;
+    var confirmacao = document.getElementById('input_senha_confirmacao').value;
+    var mensagem = "";
+
+    if (senha !== confirmacao) {
+        document.getElementById('input_senha_confirmacao').style.borderColor = "red";
+        mensagem += "As senhas não coincidem.<br>";
+        correto = false;
+    } else {
+        document.getElementById('input_senha_confirmacao').style.borderColor = "green";
+        mensagem += "<span style='color: green;'>Senhas coincidem</span>";
+    }
+
+    document.getElementById('div_mensagem').innerHTML = mensagem;
+}
+
+function limparFormulario() {
+    document.getElementById('input_nome').value = '';
+    document.getElementById('input_email').value = '';
+    document.getElementById('input_senha').value = '';
+    document.getElementById('input_senha_confirmacao').value = '';
+}
+
 
     
 </script>

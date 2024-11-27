@@ -24,14 +24,15 @@
                 <div class="formulario">
                 <div class="input-group">
                     <i class="fas fa-envelope"></i>
-                    <input id="input_email" placeholder="E-mail" type="text" />
+                    <input oninput="validarEmail()" id="input_email" placeholder="E-mail" type="text" />
                 </div>
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
-                    <input id="input_senha" placeholder="Senha" type="password" />
+                    <input oninput="validarSenha()" id="input_senha" placeholder="Senha" type="password" />
                 </div>
 
                 <button class="entrar" onclick="entrar()">Entrar</button>
+                
             </div>
         </div>
     </div>
@@ -89,4 +90,6 @@
 
         return false;
     }
+
+
 </script>

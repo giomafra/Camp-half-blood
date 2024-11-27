@@ -20,11 +20,11 @@
             </div>
             <div class="links">
                 <ul class="nav_list">
-                    <li><a href="#saga">Saga</a></li>
+                    <li><a href="#saga">História</a></li>
                     <li><a href="#livros">Livros</a></li>
-                    <li><a href="#">Temas tratados</a></li>
-                    <li><a href="#">Percy nas telas</a></li>
-                    <li><a href="#">Quizzes</a></li>
+                    <li><a href="#main_temas">Temas principais</a></li>
+                    <li><a href="#main_telas">Percy nas telas</a></li>
+                    <li><a href="#quizzes">Quizzes</a></li>
                 </ul>
             </div>
             <div id="btn_dash" class="btn_dash" style="display: none;">
@@ -94,23 +94,129 @@
             </div>
         </div>
 
-        <div class="temas">
-            <!-- Conteúdo relacionado aos temas -->
-            <h2>Temas tratados</h2>
-            <p>Exploração de amizade, família, heroísmo e o equilíbrio entre o humano e o divino.</p>
+        <div id="main_temas" class="main_temas">
+            <h1>Temas principais tratados na série</h1>
+            <div class="desc_temas">
+                <div style="height: 400px;width: 300px;" class="img_p_temas">
+                    <h3>Amizade e Lealdade</h3>
+                    <img src="assets/imgs/amizade.jpg" alt="">
+                    <p>A amizade é um dos pilares centrais da história. Percy, Annabeth e Grover formam um grupo que constantemente enfrenta desafios juntos, mostrando a importância de confiar uns nos outros.</p>
+                </div>
+                <div class="img_p_temas">
+                    <h3>Escolhas e Responsabilidades</h3>
+                    <img style="height: 325px; width: 300px;" src="assets/imgs/responsabilidade.gif" alt="">
+                    <p>Percy e outros semideuses enfrentam constantemente decisões difíceis que impactam suas vidas e o destino do mundo. O tema do peso da responsabilidade é uma constante, especialmente para personagens que se tornam líderes ou têm profecias ligadas a eles.
+                    </p>
+                </div>
+                <div class="img_p_temas">
+                    <h3>Aceitacão e Inclusão</h3>
+                    <img style="height: 323px;width: 300px;" src="assets/imgs/inclusao.jpg" alt="">
+                    <p>A série celebra a diversidade, com personagens de diferentes origens, habilidades e personalidades. A dislexia e o TDAH de Percy e outros semideuses são explicados como características que os tornam mais aptos a perceber o mundo dos deuses e monstros, transformando o que poderia ser considerado uma limitação em uma força. Além disso, o jeito mais melancólico de Nico di Angelo faz parte da hereditariedade de seu pai Hades.</p>
+                </div>
+                <div class="img_p_temas">
+                    <h3>Coragem e Heroísmo</h3>
+                    <img style="height: 323px;width: 300px;" src="assets/imgs/coragem.jpg" alt="Descrição da imagem">
+                    <p>O conceito de heroísmo é explorado profundamente, mostrando que ser um herói não é apenas sobre vencer batalhas, mas também sobre fazer o que é certo, mesmo quando é difícil ou assustador. Percy frequentemente coloca a segurança dos outros acima da sua própria.</p>
+                </div>
+
+            </div>  
         </div>
+
+        <div id="main_telas" class="main_telas">
+            <h1>Percy nas Telas</h1>
+            <div class="content_telas">
+                <div class="img_telas">
+                    <h3>Filmes</h3>
+                    
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/miXF6KwG3Po" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                    <p>A série Percy Jackson também foi adaptada para o cinema. Os filmes seguem as aventuras de Percy e seus amigos enquanto enfrentam os desafios do mundo mitológico.</p>
+                </div>
+                <div class="img_telas">
+                    <h3>Série</h3>
+
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/X7E_8PQER_U" title="Amizade e Lealdade" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                    <p>Além dos filmes, a série ganhou uma adaptação para a TV, trazendo novos elementos e uma abordagem mais fiel aos livros.</p>
+
+                </div>
+            </div>
+        </div>
+        <div id="quizzes" class="main_container_quizzes">
+            <div class="personalidade">
+                <img src="assets/imgs/deuses_gregos.jpg" alt="">
+                <h3>No universo de Percy Jackson, quem seria seu pai ou mãe?</h3>
+                <button onclick="fazer_quiz()" class="btn-quiz">Fazer o quiz</button>
+            </div>
+            <div class="conhecimento">
+                <img src="assets/imgs/universo_percy.png" alt="">
+                <h3>Será que você conhece bem o universo de Percy Jackson?</h3>
+                <button onclick="fazer_quiz2()" class="btn-quiz">Fazer o quiz</button>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="container">
+                <div class="footer-copyrigth">
+                    <span>
+                        Giovanna Mafra Silva © 2024 Todos os direitos reservados
+                    </span>
+                    <br>
+                    <span>
+                        Todos os direitos reservados
+                    </span>
+                    <br>
+                    <span>
+                        Este site está alinhado com os princípios e objetivos da ONU, em especial com o
+                        "Educação de qualidade".
+                        <a href="https://brasil.un.org/pt-br/sdgs/4" target="_blank">ONU sobre Educação de qualidade</a>.
+                    </span>
+                </div>
+        
+                <div class="footer-social">
+                    <a href="https://github.com/giomafra">
+                        <img src="./assets/icon/icons8-github.svg">
+                    </a>
+                    <a href="mailto: giovanna.msilva@sptech.school">
+                        <img src="./assets/icon/email-svgrepo-com.svg">
+                    </a>
+                </div>
+            </div>
+        </div>
+        
     </div>
-
-    <script>
-        var btns = document.getElementById("btns")
-        var btn_dash = document.getElementById("btn_dash")
-
-        if (sessionStorage.length > 0) {
-            btns.style.display = "none"
-            btn_dash.style.display = "flex"
-        } else {
-            btns.style.display = "flex"
-        }
-    </script>
 </body>
 </html>
+
+<script>
+ var btns = document.getElementById("btns");
+    var btn_dash = document.getElementById("btn_dash");
+
+    if (sessionStorage.length > 0) {
+        btns.style.display = "none";
+        btn_dash.style.display = "flex";
+    } else {
+        btns.style.display = "flex";
+        btn_dash.style.display = "none";
+    }
+
+    // Função para o primeiro quiz
+    function fazer_quiz() {
+        if (sessionStorage.length == 0) {
+            alert("Você precisa estar logado para fazer o quiz");
+        } 
+        else{
+            window.location.href='dashboard/quiz_personalidade.html'
+        }
+    }
+
+    // Função para o segundo quiz
+    function fazer_quiz2() {
+        if (sessionStorage.length === 0) {
+            alert("Você precisa estar logado para fazer o quiz");
+        } 
+        else{
+            window.location.href='dashboard/quiz_conhecimento.html'
+
+        }
+    }
+</script>

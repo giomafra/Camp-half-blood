@@ -274,6 +274,7 @@ nav {
 }
 
 .main_container {
+    margin-top: 20px;
     display: flex;
     flex-direction: column; /* Para o título ficar no topo */
     padding: 20px;
@@ -350,7 +351,7 @@ b {
 .paginas {
     display: flex;
     flex-direction: column; /* Garante que as divs fiquem empilhadas */
-    gap: 10px;
+    gap: 150px;
 }
 
 
@@ -367,7 +368,7 @@ b {
     display: flex;
     padding: 20px;
     color: white;
-    height: 83%;
+    height: 60%;
     flex-direction: column;
     text-align: justify;
     width: 100%; /* Ajusta a largura do container */
@@ -437,6 +438,7 @@ b {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 10px;
 }
 
 .prateleira{
@@ -444,7 +446,7 @@ b {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-bottom: 2px solid black;
+    border-bottom: 5px solid #b05217;
 }
 
 .livros{
@@ -463,4 +465,281 @@ b {
 .img_autor h1{
     margin: 0;
 }
+
+.main_temas {
+    display: flex;
+    padding: 20px;
+    color: white;
+    height: 83%;
+    flex-direction: column;
+    text-align: justify;
+    width: 100%; /* Ajusta a largura do container */
+    background-color: #185F65;
+}
+
+.main_temas h1 {
+    color: black;
+    text-align: center;
+    font-family: 'Windlass', sans-serif;
+    font-size: 60px;
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.desc_temas {
+    display: flex; /* Faz com que os elementos internos fiquem lado a lado */
+    flex-wrap: wrap; /* Permite que as divs quebrem para a linha seguinte se o espaço for insuficiente */
+    justify-content: space-between;
+}
+
+.img_p_temas {
+    width: 23%; /* Ajusta a largura das divs para que caibam lado a lado */
+    text-align: center; /* Centraliza o conteúdo dentro de cada div */
+}
+
+.img_p_temas img {
+    width: 100%; /* Faz a imagem ocupar toda a largura da div */
+    height: auto; /* Mantém a proporção da imagem */
+}
+
+.img_p_temas p {
+    margin-top: 10px; /* Espaço entre a imagem e o texto */
+    font-size: 20px;
+    text-align: justify;
+    font-family: 'Texturina';
+    font-weight: bold;
+    color: white;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
+
+}
+
+.img_p_temas h3{
+    color: black;
+    text-align: center;
+    font-family: 'Windlass', sans-serif;
+    font-size: 25px;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+
+.prateleira h2{
+    color: white;
+    text-align: center;
+    font-family: 'Windlass', sans-serif;
+    font-size: 25px;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.main_telas {
+    width: 100%; /* Garantir que ambas ocupem toda a largura da tela */
+    padding: 40px 20px; /* Adiciona espaçamento interno */
+    margin: 20px auto; /* Centraliza as divs */
+    background-color: #24867f; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    overflow: hidden; /* Evita que o conteúdo ultrapasse os limites */
+    display: flex;
+    flex-direction: column; /* Organiza os elementos em coluna */
+    gap: 20px;
+}
+
+.main_telas h1{
+    color: black;
+    text-align: center;
+    font-family: 'Windlass', sans-serif;
+    font-size: 60px;
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.content_telas{
+    display: flex; /* Faz com que os elementos internos fiquem lado a lado */
+    flex-wrap: wrap; /* Permite que as divs quebrem para a linha seguinte se o espaço for insuficiente */
+    justify-content: center;
+}
+
+.img_telas {
+    width: 23%; /* Ajusta a largura das divs para que caibam lado a lado */
+    text-align: center; /* Centraliza o conteúdo dentro de cada div */
+}
+
+.img_telas img {
+    width: 100%; /* Faz a imagem ocupar toda a largura da div */
+    height: auto; /* Mantém a proporção da imagem */
+}
+
+.img_telas h3 {
+    color: black;
+    text-align: center;
+    font-family: 'Windlass', sans-serif;
+    font-size: 25px;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+
+.img_telas p{
+    margin-top: 10px; /* Espaço entre a imagem e o texto */
+    font-size: 20px;
+    text-align: justify;
+    font-family: 'Texturina';
+    font-weight: bold;
+    color: white;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+.main_container_quizzes {
+    flex-grow: 1; /* Ocupa todo o restante da página após o nav */
+    display: flex;
+    height: 90vh;
+    flex-direction: column; /* Empilha os filhos verticalmente */
+    width: 100%; /* Largura total */
+}
+
+/* Divisões empilhadas verticalmente */
+.personalidade {
+    height: 50%; /* Altura fixa (pode ajustar conforme necessário) */
+    width: 100%; /* Largura total */
+    background-color: #120e42; /* Cor de fundo */
+    display: flex;
+    align-items: center; /* Centraliza conteúdo verticalmente */
+    color: white; /* Cor do texto */
+    box-shadow: black;
+}
+
+.conhecimento {
+    height: 50%; /* Altura fixa (pode ajustar conforme necessário) */
+    width: 100%; /* Largura total */
+    background-color: #136143; /* Cor de fundo */
+    display: flex;
+    align-items: center; /* Centraliza conteúdo verticalmente */
+    color: white; /* Cor do texto */
+    margin-bottom: 50px;
+}
+
+.personalidade img{
+    width: 350px;
+    height: 250px;
+    margin-left: 30px;
+    border: 4px solid black;
+    border-radius: 20px;
+}
+.personalidade h3{
+    font-family: 'Windlass', sans-serif;
+    text-shadow: 4px 4px 6px black;
+    font-size: 36px;
+    padding: 70px;
+}
+.conhecimento img{
+    width: 350px;
+    height: 250px;
+    margin-left: 30px;
+    border: 4px solid black;
+    border-radius: 20px;
+}
+.conhecimento h3{
+    font-family: 'Windlass', sans-serif;
+    text-shadow: 4px 4px 6px black;
+    font-size: 36px;
+    padding: 70px;
+}
+
+.btn-quiz {
+    font-family: 'Texturina';
+    background-color: #FF6200; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    border: 4px solid black; /* Remove as bordas */
+    padding: 10px 20px; /* Espaçamento interno */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 27px; /* Tamanho da fonte */
+    cursor: pointer; /* Adiciona um cursor de clique */
+    transition: background-color 0.3s ease; /* Efeito suave ao passar o mouse */
+}
+
+.btn-quiz:hover {
+    background-color: #E55A00; /* Cor de fundo ao passar o mouse */
+}
+
+.footer {
+    background-color: #FF6200;
+    color: #fff;
+    padding: 15px 0; /* Reduzido o padding */
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 1000px; /* Diminuí a largura máxima */
+    margin: 0 auto;
+    padding: 0 15px; /* Menos espaçamento lateral */
+}
+
+.footer-logo img {
+    max-width: 60px; /* Reduzi o tamanho do logo */
+    margin-bottom: 15px; /* Menos espaço abaixo do logo */
+    transition: transform 0.3s ease;
+}
+
+.footer-logo img:hover {
+    transform: rotate(5deg); /* Menos rotação no hover */
+}
+
+.footer-copyrigth {
+    font-size: 14px; /* Fonte um pouco menor */
+    margin-bottom: 15px;
+    line-height: 1.4; /* Menor altura de linha */
+}
+
+.footer-copyrigth a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    border-bottom: 1px solid transparent; /* Borda mais fina */
+}
+
+.footer-copyrigth a:hover {
+    color: #FFC0CB;
+    border-bottom: 1px solid #FFC0CB;
+}
+
+.footer-copyrigth span {
+    display: block;
+    font-size: 14px;
+}
+
+.footer-social {
+    margin-top: 15px; /* Menos espaço entre os ícones sociais e o texto */
+}
+
+.footer-social a {
+    margin: 0 10px; /* Menos espaçamento entre os ícones */
+    display: inline-block;
+}
+
+.footer-social img {
+    width: 30px; /* Tamanho dos ícones reduzido */
+    height: 30px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.footer-social img:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
 

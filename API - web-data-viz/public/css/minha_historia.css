@@ -127,3 +127,77 @@ nav {
     color: #00bfb2; /* Cor de destaque */
 }
 
+.footer {
+    background-color: #FF6200;
+    color: #fff;
+    padding: 15px 0; /* Reduzido o padding */
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 1000px; /* Diminuí a largura máxima */
+    margin: 0 auto;
+    padding: 0 15px; /* Menos espaçamento lateral */
+}
+
+.footer-logo img {
+    max-width: 60px; /* Reduzi o tamanho do logo */
+    margin-bottom: 15px; /* Menos espaço abaixo do logo */
+    transition: transform 0.3s ease;
+}
+
+.footer-logo img:hover {
+    transform: rotate(5deg); /* Menos rotação no hover */
+}
+
+.footer-copyrigth {
+    font-size: 14px; /* Fonte um pouco menor */
+    margin-bottom: 15px;
+    line-height: 1.4; /* Menor altura de linha */
+}
+
+.footer-copyrigth a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    border-bottom: 1px solid transparent; /* Borda mais fina */
+}
+
+.footer-copyrigth a:hover {
+    color: #FFC0CB;
+    border-bottom: 1px solid #FFC0CB;
+}
+
+.footer-copyrigth span {
+    display: block;
+    font-size: 14px;
+}
+
+.footer-social {
+    margin-top: 15px; /* Menos espaço entre os ícones sociais e o texto */
+}
+
+.footer-social a {
+    margin: 0 10px; /* Menos espaçamento entre os ícones */
+    display: inline-block;
+}
+
+.footer-social img {
+    width: 30px; /* Tamanho dos ícones reduzido */
+    height: 30px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.footer-social img:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
