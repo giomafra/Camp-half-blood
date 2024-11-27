@@ -94,7 +94,6 @@
 
     let personagemSelecionado = null;
 
-// Funções para selecionar os personagens
 function action1() {
     personagemSelecionado = 1; // Percy
     alert("Você selecionou Percy!  Clique em 'Mudar foto' para confirmar a sua escolha.");
@@ -116,7 +115,6 @@ function action5() {
     alert("Você selecionou Luke! Clique em 'Mudar foto' para confirmar a sua escolha.");
 }
 
-// Função para mudar a foto de perfil
     function mudar() {
     if (personagemSelecionado === null) {
         alert("Selecione um personagem antes de mudar a foto!");
@@ -125,7 +123,6 @@ function action5() {
 
     sessionStorage.PERSONEGEM = personagemSelecionado;
 
-    // Atualiza a foto de perfil com base no personagem selecionado
     if (personagemSelecionado == 1) {
         foto_perfil.innerHTML = `<img style="height: 100%; width: 100%; border-radius: 120px;" src="../assets/imgs/percy_perfil.png" alt="">`;
     } else if (personagemSelecionado == 2) {

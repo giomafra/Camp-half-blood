@@ -55,7 +55,6 @@
     </div>
 </body>
 <script>
-    // Declaração e atualização do nome do usuário
     b_usuario.innerHTML = `${sessionStorage.NOME_USUARIO}`
 
     if(sessionStorage.PERSONEGEM == 1){
@@ -80,7 +79,6 @@
     var historia = document.getElementById("historia");
     var imagem_hist = document.getElementById("imagem_hist");
 
-    // Array de histórias e títulos
     var historias = [
         {
             titulo: "Atena X Poseidon e a disputa por Atenas",
@@ -100,18 +98,14 @@
                     Odisseu, com sua astúcia, decidiu enganar o ciclope para escapar. Ele e seus homens embriagaram Polifemo e, quando o gigante adormeceu, os heróis o cegaram com um estilete afiado. Polifemo chamou Poseidon para amaldiçoar Odisseu, prolongando sua jornada de volta a Ítaca.`,
             imagem: `<img style="border: 4px solid black;width: 100%; height: 100%;" src="../assets/imgs/polifemo.jpg">`
         }
-        // Adicione mais histórias conforme necessário
     ];
 
-    // Função para exibir a história aleatória
     function ver() {
         capa.style.display = 'none';
         card.style.display = 'flex';
 
-        // Selecionar um índice aleatório
         var randomIndex = Math.floor(Math.random() * historias.length);
 
-        // Atualizar o conteúdo com a história aleatória
         var historiaAleatoria = historias[randomIndex];
         titulo_historia.innerHTML = historiaAleatoria.titulo;
         historia.innerHTML = historiaAleatoria.texto;
