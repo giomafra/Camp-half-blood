@@ -252,8 +252,8 @@
 
 .botao_ver_card {
     display: inline-block;
-    background-color: #cd6600; /* Azul vibrante */
-    color: #FFFFFF; /* Texto branco */
+    background-color: #cd6600; 
+    color: #FFFFFF; 
     border: solid 4px black;
     height: 100px;
     width: 350px;
@@ -262,24 +262,22 @@
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-radius: 8px; /* Bordas arredondadas */
+    border-radius: 8px; 
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
 }
 
-/* Efeito hover */
 .botao_ver_card:hover {
-    background-color: #d4771b; /* Azul mais escuro */
+    background-color: #d4771b;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-    transform: translateY(-3px); /* Elevação do botão */
+    transform: translateY(-3px); 
 }
 
-/* Efeito ao clicar */
 .botao_ver_card:active {
-    background-color: #d4771b; /* Azul ainda mais escuro */
+    background-color: #d4771b; 
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-    transform: translateY(1px); /* Abaixar ao clicar */
+    transform: translateY(1px); 
 }
 
 #b_usuario{
